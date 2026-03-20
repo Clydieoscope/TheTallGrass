@@ -26,6 +26,7 @@ public class RangeDetector : MonoBehaviour
         {
             DetectedTarget = null;
         }
+
         return DetectedTarget;
     }
 
