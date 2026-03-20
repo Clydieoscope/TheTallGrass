@@ -1823,9 +1823,10 @@ MonoBehaviour:
   m_playerLayerMask:
     serializedVersion: 2
     m_Bits: 320
-  m_detectionRange: 10
+  m_detectionRange: 15
   m_detectionHeight: 1
   showDebugVisuals: 1
+  m_memoryDuration: 2
 --- !u!114 &5317386642072496483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1838,7 +1839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f4960a3bf4c664d81f3c0168c1cd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 10
+  detectionRadius: 15
   detectionMask:
     serializedVersion: 2
     m_Bits: 256
