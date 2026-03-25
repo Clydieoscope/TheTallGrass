@@ -7,38 +7,73 @@ public class LineOfSightDetector : MonoBehaviour
     [SerializeField]
     private float m_detectionRange = 10.0f;
     [SerializeField]
-    private float m_detectionHeight = 3f;
+    private float m_detectionHeight = 2f;
 
     [SerializeField] private bool showDebugVisuals = true;
 
-    public GameObject PerformDetection(GameObject potentialTarget)
-    {
-        RaycastHit hit;
-        Vector3 direction = potentialTarget.transform.position - transform.position;
-        Physics.Raycast(transform.position + Vector3.up * m_detectionHeight,
-            direction, out hit, m_detectionRange, m_playerLayerMask);
+    private GameObject m_lastSeenTarget;
+    private Vector3 m_lastSeenPosition;
+    private float m_lastSeenTime;
+    [SerializeField]
+    private float m_memoryDuration = 7f; // seconds
+    
 
-        if (hit.collider != null && hit.collider.gameObject == potentialTarget)
+    public GameObject PerformDetection(GameObject potentialTarget)
+{
+    RaycastHit hit;
+    Vector3 direction = potentialTarget.transform.position - transform.position;
+
+    bool didHit = Physics.Raycast(
+        transform.position + Vector3.up * m_detectionHeight,
+        direction,
+        out hit,
+        m_detectionRange,
+        m_playerLayerMask
+    );
+
+    if (didHit && hit.collider.gameObject == potentialTarget)
+    {
+        // Player is visible
+        m_lastSeenTarget = potentialTarget;
+        m_lastSeenTime = Time.time;
+        m_lastSeenPosition = potentialTarget.transform.position;
+
+        if (showDebugVisuals && this.enabled)
         {
-            if (showDebugVisuals && this.enabled)
-            {
-                Debug.DrawLine(transform.position + Vector3.up * m_detectionHeight,
-                    potentialTarget.transform.position, Color.green);
-            }
-            return hit.collider.gameObject;
+            Debug.DrawLine(
+                transform.position + Vector3.up * m_detectionHeight,
+                potentialTarget.transform.position,
+                Color.blue
+            );
         }
-        else
+
+        return potentialTarget;
+    }
+
+    // Player NOT visible, check memory
+    if (m_lastSeenTarget != null)
+    {
+        float timeSinceLastSeen = Time.time - m_lastSeenTime;
+
+        if (timeSinceLastSeen <= m_memoryDuration)
         {
-            return null;
+            // Still remember player, keep chasing
+            return m_lastSeenTarget;
         }
     }
 
+    // Memory expired
+    m_lastSeenTarget = null;
+    return null;
+}
+
     private void OnDrawGizmos()
     {
-        if (showDebugVisuals)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position + Vector3.up * m_detectionHeight, 0.3f);
-        }
+        if (!showDebugVisuals|| this.enabled)
+            return;
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position + Vector3.up * m_detectionHeight, 0.3f);
+        
     }
 }
