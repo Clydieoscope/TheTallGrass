@@ -966,7 +966,7 @@ GameObject:
   - component: {fileID: 23714161201871092}
   - component: {fileID: 4455270102083904744}
   m_Layer: 0
-  m_Name: Industrial Train Dr14
+  m_Name: Train
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
