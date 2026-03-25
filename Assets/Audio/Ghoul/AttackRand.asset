@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-7307100390010162386
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack4_{-7307100390010162386}
+  m_AudioClip: {fileID: 8300000, guid: b567bc8e420a0384683daf197900bf84, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-4295159777941217155
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack6_{-4295159777941217155}
+  m_AudioClip: {fileID: 8300000, guid: ec4abc9ca1410c848b477adf25c5e28b, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1111315564764312472
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack1_{1111315564764312472}
+  m_AudioClip: {fileID: 8300000, guid: fb21ab90a8b02d943973495fc21a5018, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1180595494773603383
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack5_{1180595494773603383}
+  m_AudioClip: {fileID: 8300000, guid: a81666e86c421c140aee69768272a361, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1641224629970959647
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack2_{1641224629970959647}
+  m_AudioClip: {fileID: 8300000, guid: 46468205a5a94ae49af80a68de1f3dfc, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &6207194054445232716
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack3_{6207194054445232716}
+  m_AudioClip: {fileID: 8300000, guid: 7fe35a53fbd5202419fe2533aa0eb916, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AttackRand
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: -357.44687, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 1111315564764312472}
+  - {fileID: 1641224629970959647}
+  - {fileID: 6207194054445232716}
+  - {fileID: -7307100390010162386}
+  - {fileID: 1180595494773603383}
+  - {fileID: -4295159777941217155}
+  m_AvoidRepeatingLast: 2
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0

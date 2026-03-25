@@ -404,7 +404,7 @@ AudioSource:
   MinDistance: 0.5
   MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2789,6 +2789,7 @@ MonoBehaviour:
   health: 300
   maxHealth: 300
   playerController: {fileID: 2359378693500386118}
+  mouthSource: {fileID: 0}
 --- !u!1 &6965511053465536764
 GameObject:
   m_ObjectHideFlags: 0
