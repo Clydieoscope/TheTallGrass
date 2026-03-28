@@ -551,7 +551,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
       parentName: Armature
-      position: {x: 0.0000042659817, y: 0.99405295, z: 0.010124164}
+      position: {x: 0.0000042659817, y: 0.825, z: 0.010124164}
       rotation: {x: 0.00000051044685, y: 0.0000011926339, z: -0.00003935688, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:LeftUpLeg
@@ -566,8 +566,8 @@ ModelImporter:
       scale: {x: 1.0000001, y: 0.99999976, z: 1.0000002}
     - name: mixamorig:LeftFoot
       parentName: mixamorig:LeftLeg
-      position: {x: 0.0000010319053, y: 0.4119918, z: 0.000005604698}
-      rotation: {x: 0.62666774, y: 0.017998071, z: -0.069030136, w: 0.77601457}
+      position: {x: 0.0000010700895, y: 0.41199395, z: 0.000005787237}
+      rotation: {x: 0.66382784, y: 0.014604455, z: -0.069826916, w: 0.7444753}
       scale: {x: 0.99999946, y: 0.99999976, z: 0.9999995}
     - name: mixamorig:LeftToeBase
       parentName: mixamorig:LeftFoot
@@ -596,8 +596,8 @@ ModelImporter:
       scale: {x: 0.99999994, y: 1.0000004, z: 1.0000001}
     - name: mixamorig:RightFoot
       parentName: mixamorig:RightLeg
-      position: {x: 0.00000009685756, y: 0.4116133, z: -0.00000021047887}
-      rotation: {x: 0.60827833, y: 0.009142779, z: 0.046396308, w: 0.7923138}
+      position: {x: 0.0000001229346, y: 0.41161186, z: -0.000000314787}
+      rotation: {x: 0.65893877, y: 0.01216636, z: 0.04569669, w: 0.7507087}
       scale: {x: 0.999999, y: 1.0000004, z: 0.99999917}
     - name: mixamorig:RightToeBase
       parentName: mixamorig:RightFoot
@@ -902,7 +902,7 @@ ModelImporter:
     - name: mixamorig:RightHandRing3
       parentName: mixamorig:RightHandRing2
       position: {x: 0.000090133246, y: 0.030576898, z: 0.00000024926032}
-      rotation: {x: 0.000010563392, y: -0.0012475508, z: -0.011702195, w: 0.99993074}
+      rotation: {x: 0.000010563394, y: -0.0012475508, z: -0.011702198, w: 0.99993074}
       scale: {x: 1.0000001, y: 0.99999994, z: 0.9999995}
     - name: mixamorig:RightHandRing4
       parentName: mixamorig:RightHandRing3

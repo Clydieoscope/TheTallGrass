@@ -6,6 +6,7 @@ public enum State
 {
 	Idle,
 	Patrol,
+	Alert,
 	Chase,
 	Attack
 }

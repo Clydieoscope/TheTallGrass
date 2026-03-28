@@ -2392,8 +2392,12 @@ MonoBehaviour:
   footstepSource: {fileID: 2270788771737542730}
   attackSource: {fileID: 7179794889104680743}
   mouthSource: {fileID: 6185434357500883849}
-  chirpClips: []
-  screamClips: []
+  chirpClips:
+  - {fileID: 8300000, guid: 4d9d64c127f5f4744aad3c361d1761c9, type: 3}
+  screamClips:
+  - {fileID: 8300000, guid: 159c4d9fe0018b34db02b8c0d1d9b154, type: 3}
+  - {fileID: 8300000, guid: 9c6d6d6e0dda3a84b8db68a016823ba7, type: 3}
+  - {fileID: 8300000, guid: 67226beaf09084f4689e913d7255ae11, type: 3}
   volume: 1
 --- !u!1 &5755211437197302625
 GameObject:
