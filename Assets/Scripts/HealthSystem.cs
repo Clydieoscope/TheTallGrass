@@ -6,6 +6,8 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
     [SerializeField] private MonoBehaviour playerController;
+    [SerializeField] private AudioSource mouthSource;
+
     private Animator anim;
     private bool dead;
 
@@ -35,6 +37,7 @@ public class HealthSystem : MonoBehaviour
         if (playerController != null)
             playerController.enabled = false;
 
+        mouthSource.Stop();
         anim.SetTrigger("Dead");
         anim.SetLayerWeight(anim.GetLayerIndex("Combat"), 0f);
 
