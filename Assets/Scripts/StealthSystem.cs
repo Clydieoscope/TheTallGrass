@@ -24,7 +24,7 @@ public class StealthSystem : MonoBehaviour
         return currentStealth;
     }
 
-    public bool IsHidden()
+    public bool IsStealthed()
     {
         return currentStealth > 0f;
     }

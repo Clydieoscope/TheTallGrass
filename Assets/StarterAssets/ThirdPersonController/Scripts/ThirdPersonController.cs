@@ -312,16 +312,29 @@ namespace StarterAssets
             }
         }
 
+        // private void UpdateControllerCollider()
+        // {
+        //     Vector3 targetCenter = standCenter;
+        //     float targetHeight = standHeight;
+
+        //     if (crouched)
+        //     {
+        //         targetCenter = crouchCenter;
+        //         targetHeight = crouchHeight;
+        //     }
+
+        //     _controller.height = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
+        //     _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
+        // }
+
         private void UpdateControllerCollider()
         {
-            Vector3 targetCenter = standCenter;
-            float targetHeight = standHeight;
+            float targetHeight = crouched ? crouchHeight : standHeight;
 
-            if (crouched)
-            {
-                targetCenter = crouchCenter;
-                targetHeight = crouchHeight;
-            }
+            // Keep feet grounded by adjusting center based on height
+            float targetCenterY = targetHeight / 2f;
+
+            Vector3 targetCenter = new Vector3(0, targetCenterY, 0);
 
             _controller.height = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
             _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
@@ -447,5 +460,10 @@ namespace StarterAssets
 
             }
         }
+
+        public bool IsCrouched()
+        {
+            return crouched;
+        } 
     }
 }

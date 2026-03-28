@@ -1,4 +1,5 @@
 using UnityEngine;
+using StarterAssets;
 
 public class LineOfSightDetector : MonoBehaviour
 {
@@ -16,56 +17,81 @@ public class LineOfSightDetector : MonoBehaviour
     private float m_lastSeenTime;
     [SerializeField]
     private float m_memoryDuration = 7f; // seconds
+
+    [SerializeField] private float m_stealthDetectionRange = 5f;
     
 
     public GameObject PerformDetection(GameObject potentialTarget)
-{
-    RaycastHit hit;
-    Vector3 direction = potentialTarget.transform.position - transform.position;
-
-    bool didHit = Physics.Raycast(
-        transform.position + Vector3.up * m_detectionHeight,
-        direction,
-        out hit,
-        m_detectionRange,
-        m_playerLayerMask
-    );
-
-    if (didHit && hit.collider.gameObject == potentialTarget)
     {
-        // Player is visible
-        m_lastSeenTarget = potentialTarget;
-        m_lastSeenTime = Time.time;
-        m_lastSeenPosition = potentialTarget.transform.position;
+        RaycastHit hit;
+        Vector3 direction = potentialTarget.transform.position - transform.position;
+
+        float distance = direction.magnitude;
+
+        StealthSystem stealth = potentialTarget.GetComponent<StealthSystem>();
+        ThirdPersonController controller = potentialTarget.GetComponent<ThirdPersonController>();
+
+        float currentDetectionRange = m_detectionRange;
+
+        if (stealth != null && stealth.IsStealthed() && controller != null && controller.IsCrouched())
+        {
+            currentDetectionRange = m_stealthDetectionRange;
+        }
+
+        // Exit early if no one is detected within range
+        if (distance > currentDetectionRange)
+        {
+            return HandleMemory();
+        }
+
+        bool didHit = Physics.Raycast(
+            transform.position + Vector3.up * m_detectionHeight,
+            direction.normalized,
+            out hit,
+            currentDetectionRange,
+            m_playerLayerMask
+        );
 
         if (showDebugVisuals && this.enabled)
         {
             Debug.DrawLine(
                 transform.position + Vector3.up * m_detectionHeight,
                 potentialTarget.transform.position,
-                Color.blue
+                Color.magenta
             );
         }
 
-        return potentialTarget;
-    }
-
-    // Player NOT visible, check memory
-    if (m_lastSeenTarget != null)
-    {
-        float timeSinceLastSeen = Time.time - m_lastSeenTime;
-
-        if (timeSinceLastSeen <= m_memoryDuration)
+        if (didHit && hit.collider.gameObject == potentialTarget)
         {
-            // Still remember player, keep chasing
-            return m_lastSeenTarget;
+            // Player is visible
+            m_lastSeenTarget = potentialTarget;
+            m_lastSeenTime = Time.time;
+            m_lastSeenPosition = potentialTarget.transform.position;
+
+            return potentialTarget;
         }
+
+        return HandleMemory();
     }
 
-    // Memory expired
-    m_lastSeenTarget = null;
-    return null;
-}
+    private GameObject HandleMemory()
+    {
+        // Player NOT visible, check memory
+        if (m_lastSeenTarget != null)
+        {
+            float timeSinceLastSeen = Time.time - m_lastSeenTime;
+
+            if (timeSinceLastSeen <= m_memoryDuration)
+            {
+                // Still remember player, keep chasing
+                return m_lastSeenTarget;
+            }
+        }
+
+        // Memory expired
+        m_lastSeenTarget = null;
+        return null;
+    }
 
     private void OnDrawGizmos()
     {

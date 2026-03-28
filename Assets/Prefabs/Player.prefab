@@ -820,6 +820,7 @@ GameObject:
   - component: {fileID: 5033284980312747251}
   - component: {fileID: 3624419076877393196}
   - component: {fileID: 4297544559015554757}
+  - component: {fileID: 4371322354483703244}
   m_Layer: 8
   m_Name: Armature
   m_TagString: Player
@@ -1089,10 +1090,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc9a180cf5461641a1478b33805a26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 300
-  maxHealth: 300
+  health: 30
+  maxHealth: 30
   playerController: {fileID: 2359378693500386118}
   mouthSource: {fileID: 4720771376913543992}
+--- !u!114 &4371322354483703244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6932515823108135480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b592ea5934e97884fb360849ef1b0879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StealthSystem
+  maxStealth: 10
 --- !u!1 &7098922225849175258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,7 +1133,7 @@ Transform:
   m_GameObject: {fileID: 7098922225849175258}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7100003, z: 0}
+  m_LocalPosition: {x: 0.037, y: 0.624, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

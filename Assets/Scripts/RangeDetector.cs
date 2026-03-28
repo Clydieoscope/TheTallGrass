@@ -4,6 +4,7 @@ public class RangeDetector : MonoBehaviour
 {
     [Header("Detection Settings")]
     [SerializeField] private float detectionRadius = 10f;
+    [SerializeField] private float stealthDetectionRadius = 5f;
     [SerializeField] private LayerMask detectionMask;
     [SerializeField] private bool showDebugVisuals = true;
 
@@ -37,6 +38,9 @@ public class RangeDetector : MonoBehaviour
 
         Gizmos.color = DetectedTarget ? Color.green : Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+
+        Gizmos.color = DetectedTarget ? Color.green : Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, stealthDetectionRadius);
 
     }
 }
