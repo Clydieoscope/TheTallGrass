@@ -67,19 +67,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AO: 2.4
+    - _BaseLight: 0.35
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlossMapScale: 0.411
+    - _GlossMapScale: 0.219
     - _Glossiness: 0.734
     - _GlossyReflections: 0
-    - _Metallic: 0.683
+    - _Metallic: 0.731
     - _Mode: 0
+    - _Occlusion: 7.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 1
     - _SpecularHighlights: 1
+    - _SquashAmount: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
@@ -87,5 +91,7 @@ Material:
     - _Color: {r: 0.43796724, g: 0.6981132, b: 0.5292942, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

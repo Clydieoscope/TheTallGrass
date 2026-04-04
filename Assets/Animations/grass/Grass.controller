@@ -21,7 +21,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -10, y: 40, z: 0}
+  m_AnyStatePosition: {x: -20, y: 50, z: 0}
   m_EntryPosition: {x: -30, y: 140, z: 0}
   m_ExitPosition: {x: 550, y: 40, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -35,7 +35,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isTouched
+    m_ConditionEvent: IsTouched
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7330813279595455558}
@@ -60,7 +60,7 @@ AnimatorController:
   m_Name: Grass
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: isTouched
+  - m_Name: IsTouched
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -99,7 +99,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: 59544c8c7138c8947b53db320bd6bf77, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -148,7 +148,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 82cb498cfa6e3854cb7600724a1be758, type: 2}
+  m_Motion: {fileID: 7400000, guid: bcb1ddefed91e2545912ffaf6d8279cb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
