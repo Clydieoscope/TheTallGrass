@@ -57,11 +57,11 @@ Transform:
   m_GameObject: {fileID: 1214650588401270813}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.8299999, z: 0}
+  m_LocalPosition: {x: 0, y: 0.100000024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8844418459001069619}
+  m_Father: {fileID: 8614612352704946198}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &7343266699560551136
 AudioSource:
@@ -189,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 1478540871690989694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3000002, y: 0.44499993, z: -2}
+  m_LocalPosition: {x: 0.29999924, y: 0.8180001, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -375,7 +375,7 @@ Transform:
   m_GameObject: {fileID: 1822523490402326452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3000002, y: 0.44499993, z: -2}
+  m_LocalPosition: {x: 0.29999924, y: 0.8180001, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -447,11 +447,11 @@ Transform:
   m_GameObject: {fileID: 2337990831337960232}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.8299999, z: 0}
+  m_LocalPosition: {x: 0, y: 0.100000024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8844418459001069619}
+  m_Father: {fileID: 8614612352704946198}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &5995628653123265667
 AudioSource:
@@ -701,10 +701,6 @@ Transform:
   - {fileID: 4962427865937059402}
   - {fileID: 7191699259873060351}
   - {fileID: 8614612352704946198}
-  - {fileID: 3725079107697494953}
-  - {fileID: 804143719003145441}
-  - {fileID: 3901684970435363305}
-  - {fileID: 4845569299550902902}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6136070552528662106
@@ -821,6 +817,7 @@ GameObject:
   - component: {fileID: 3624419076877393196}
   - component: {fileID: 4297544559015554757}
   - component: {fileID: 4371322354483703244}
+  - component: {fileID: 5621273289912727236}
   m_Layer: 8
   m_Name: Armature
   m_TagString: Player
@@ -837,12 +834,16 @@ Transform:
   m_GameObject: {fileID: 6932515823108135480}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.92999995, z: 0}
+  m_LocalPosition: {x: 0, y: -0.557, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3725079107697494953}
   - {fileID: 3657291256648146956}
   - {fileID: 5842288712047236943}
+  - {fileID: 804143719003145441}
+  - {fileID: 3901684970435363305}
+  - {fileID: 4845569299550902902}
   m_Father: {fileID: 8844418459001069619}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2388048118638686298
@@ -906,7 +907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrouchSpeed: 1
   MoveSpeed: 2
-  SprintSpeed: 4.3
+  SprintSpeed: 6
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   AudioFootsteps: {fileID: 7343266699560551136}
@@ -950,7 +951,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6932515823108135480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 909d917d73a63f940ac158d02e936645, type: 3}
   m_Name: 
@@ -1107,6 +1108,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StealthSystem
   maxStealth: 10
+--- !u!114 &5621273289912727236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6932515823108135480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b592ea5934e97884fb360849ef1b0879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StealthSystem
+  maxStealth: 10
 --- !u!1 &7098922225849175258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,7 +1151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8844418459001069619}
+  m_Father: {fileID: 8614612352704946198}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4720771376913543992
 AudioSource:
@@ -1261,12 +1275,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7826918650582286269}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.157, z: -0.598}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.087, z: -0.339}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8844418459001069619}
+  m_Father: {fileID: 8614612352704946198}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &6081444884684887808
 Light:
@@ -1279,13 +1293,13 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.51067996, g: 0.6561054, b: 0.7169812, a: 1}
-  m_Intensity: 1
-  m_Range: 15
+  m_Intensity: 0.5
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1316,7 +1330,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 503
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0

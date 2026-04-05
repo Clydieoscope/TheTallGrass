@@ -175,8 +175,8 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            JumpAndGravity();
             GroundedCheck();
+            JumpAndGravity();
             Move();
             UpdateControllerCollider();
 
@@ -327,14 +327,42 @@ namespace StarterAssets
         //     _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
         // }
 
+        // private void UpdateControllerCollider()
+        // {
+        //     float targetHeight = crouched ? crouchHeight : standHeight;
+
+        //     // Keep feet grounded by adjusting center based on height
+        //     float targetCenterY = targetHeight / 2f;
+
+        //     Vector3 targetCenter = new Vector3(0, targetCenterY, 0);
+
+        //     _controller.height = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
+        //     _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
+        // }
+
+        // private void UpdateControllerCollider()
+        // {
+        //     float targetHeight = crouched ? crouchHeight : standHeight;
+        //     Vector3 targetCenter = crouched ? crouchCenter : standCenter;
+
+        //     _controller.height = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
+        //     _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
+        // }
+
         private void UpdateControllerCollider()
         {
             float targetHeight = crouched ? crouchHeight : standHeight;
+            Vector3 targetCenter = crouched ? crouchCenter : standCenter;
 
-            // Keep feet grounded by adjusting center based on height
-            float targetCenterY = targetHeight / 2f;
+            // Only expand upward if there's clearance overhead
+            if (targetHeight > _controller.height)
+            {
+                float heightDelta = targetHeight - _controller.height;
+                Vector3 topOfCapsule = transform.position + Vector3.up * (_controller.height + _controller.skinWidth);
+                bool blocked = Physics.SphereCast(topOfCapsule, _controller.radius, Vector3.up, out _, heightDelta, GroundLayers);
 
-            Vector3 targetCenter = new Vector3(0, targetCenterY, 0);
+                if (blocked) return;
+            }
 
             _controller.height = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
             _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
@@ -361,23 +389,18 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f && !_animator.IsInTransition(0))
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
-                    _input.jump = false;
-
-                    if (!crouched)
+                    if (!_animator.IsInTransition(0) && !crouched)
                     {
-                        // the square root of H * -2 * G = how much velocity needed to reach desired height
+                        _input.jump = false;  // only clear when actually jumping
+                        Debug.Log($"Jump calc input: {JumpHeight * -2f * Gravity}");
                         _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
-                        // update animator if using character
-                        if (_hasAnimator)
-                        {
-                            _animator.SetBool(_animIDJump, true);
-                        }
+                        if (_hasAnimator) _animator.SetBool(_animIDJump, true);
                     }
                     else if (crouched)
                     {
+                        _input.jump = false;
                         crouched = false;
                     }
                 }
