@@ -5,7 +5,7 @@ OcclusionCullingSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_OcclusionBakeSettings:
-    smallestOccluder: 5
+    smallestOccluder: 3
     smallestHole: 0.25
     backfaceThreshold: 100
   m_SceneGUID: 9fc0d4010bbf28b4594072e72b8655ab
@@ -15,19 +15,19 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0, g: 0.14239939, b: 0.18867922, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.05
+  m_FogColor: {r: 0.04142934, g: 0.1541878, b: 0.1792453, a: 1}
+  m_FogMode: 2
+  m_FogDensity: 0.013
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientEquatorColor: {r: 0, g: 0.047087234, b: 0.20754719, a: 1}
+  m_AmbientGroundColor: {r: 0.0016909974, g: 0.3584906, b: 0.16153319, a: 1}
   m_AmbientIntensity: 2.19
-  m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.2622375, g: 0.58548087, b: 0.7830189, a: 1}
+  m_AmbientMode: 1
+  m_SubtractiveShadowColor: {r: 0.26312745, g: 0.46764216, b: 0.764151, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: eac2ef371405749e0bd050b4c3272f16, type: 2}
-  m_HaloStrength: 0.328
+  m_HaloStrength: 0.253
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -1802,7 +1802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5721022160466427218, guid: 86a1928492ebe1c4a8523d3689d55829, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.199081
+      value: -11.85
       objectReference: {fileID: 0}
     - target: {fileID: 5721022160466427218, guid: 86a1928492ebe1c4a8523d3689d55829, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1810,7 +1810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5721022160466427218, guid: 86a1928492ebe1c4a8523d3689d55829, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.9357282
+      value: -9.96
       objectReference: {fileID: 0}
     - target: {fileID: 5721022160466427218, guid: 86a1928492ebe1c4a8523d3689d55829, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2640,6 +2640,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 3722196923994364250, guid: 364dd27857da67f4fa8f1e6771b08c34, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5734978223531033235, guid: 364dd27857da67f4fa8f1e6771b08c34, type: 3}
       propertyPath: m_LODs.Array.data[0].renderers.Array.size
       value: 1
@@ -2685,6 +2689,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 168161994}
     m_Modifications:
+    - target: {fileID: 860587448777072457, guid: 9d0403e047239a34fb5e2031412bd3d3, type: 3}
+      propertyPath: m_Intensity
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4026411640064445787, guid: 9d0403e047239a34fb5e2031412bd3d3, type: 3}
       propertyPath: m_Name
       value: GhoulLight
@@ -2742,9 +2750,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4962427865937059402, guid: 9ef6b194b142e77489d6f77daa2c5f56, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.29999924
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962427865937059402, guid: 9ef6b194b142e77489d6f77daa2c5f56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3050001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962427865937059402, guid: 9ef6b194b142e77489d6f77daa2c5f56, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.9999981
+      objectReference: {fileID: 0}
     - target: {fileID: 6010418479723746629, guid: 9ef6b194b142e77489d6f77daa2c5f56, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081444884684887808, guid: 9ef6b194b142e77489d6f77daa2c5f56, type: 3}
+      propertyPath: m_Range
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191699259873060351, guid: 9ef6b194b142e77489d6f77daa2c5f56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3050001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191699259873060351, guid: 9ef6b194b142e77489d6f77daa2c5f56, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.9999981
+      objectReference: {fileID: 0}
+    - target: {fileID: 8614612352704946198, guid: 9ef6b194b142e77489d6f77daa2c5f56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 8844418459001069619, guid: 9ef6b194b142e77489d6f77daa2c5f56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3026,6 +3062,14 @@ PrefabInstance:
     - target: {fileID: 4672984691406256020, guid: b8d7740e2d0ee6341ac7d14de2b37ea1, type: 3}
       propertyPath: m_Name
       value: Moonlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991489623977389670, guid: b8d7740e2d0ee6341ac7d14de2b37ea1, type: 3}
+      propertyPath: m_Intensity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991489623977389670, guid: b8d7740e2d0ee6341ac7d14de2b37ea1, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
