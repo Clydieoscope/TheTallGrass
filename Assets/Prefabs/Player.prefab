@@ -189,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 1478540871690989694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29999924, y: 0.8180001, z: -2}
+  m_LocalPosition: {x: 0.29999924, y: 1.3050001, z: -1.9999981}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -375,7 +375,7 @@ Transform:
   m_GameObject: {fileID: 1822523490402326452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.29999924, y: 0.8180001, z: -2}
+  m_LocalPosition: {x: 0.29999924, y: 1.3050001, z: -1.9999981}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -817,7 +817,6 @@ GameObject:
   - component: {fileID: 3624419076877393196}
   - component: {fileID: 4297544559015554757}
   - component: {fileID: 4371322354483703244}
-  - component: {fileID: 5621273289912727236}
   m_Layer: 8
   m_Name: Armature
   m_TagString: Player
@@ -834,7 +833,7 @@ Transform:
   m_GameObject: {fileID: 6932515823108135480}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.557, z: 0}
+  m_LocalPosition: {x: 0, y: -0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -951,7 +950,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6932515823108135480}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 909d917d73a63f940ac158d02e936645, type: 3}
   m_Name: 
@@ -1091,24 +1090,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc9a180cf5461641a1478b33805a26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 30
-  maxHealth: 30
+  health: 1000
+  maxHealth: 1000
   playerController: {fileID: 2359378693500386118}
   mouthSource: {fileID: 4720771376913543992}
 --- !u!114 &4371322354483703244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6932515823108135480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b592ea5934e97884fb360849ef1b0879, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StealthSystem
-  maxStealth: 10
---- !u!114 &5621273289912727236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1294,7 +1280,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.51067996, g: 0.6561054, b: 0.7169812, a: 1}
   m_Intensity: 0.5
-  m_Range: 20
+  m_Range: 25
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
