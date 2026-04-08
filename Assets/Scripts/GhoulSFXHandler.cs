@@ -6,13 +6,24 @@ public class GhoulSFXHandler : MonoBehaviour
     [SerializeField] private AudioSource attackSource;
     [SerializeField] private AudioSource mouthSource;
 
+    public AudioClip howlClip;
+
     [Header("Chirps")]
     public AudioClip[] chirpClips;
 
-
     [Header("Screams")]
     public AudioClip[] screamClips;
+
     [Range(0f, 1f)] public float volume = 1f;
+    private void PlayRandom(AudioSource source, AudioClip[] clips)
+    {
+        if (clips.Length == 0) return;
+
+        int index = Random.Range(0, clips.Length);
+        AudioClip clip = clips[index];
+
+        source.PlayOneShot(clip, volume);
+    }
 
     public void PlayAttackSound()
     {
@@ -26,22 +37,18 @@ public class GhoulSFXHandler : MonoBehaviour
 
     public void PlayScream()
     {
-        if (screamClips.Length == 0) return;
-
-        int index = Random.Range(0, screamClips.Length);
-        AudioClip clip = screamClips[index];
-
-        mouthSource.PlayOneShot(clip, volume);
-
+        PlayRandom(mouthSource, screamClips);
     }
 
     public void PlayChirp()
     {
-        if (chirpClips.Length == 0) return;
-
-        int index = Random.Range(0, chirpClips.Length);
-        AudioClip clip = chirpClips[index];
-
-        mouthSource.PlayOneShot(clip, volume);
+        PlayRandom(mouthSource, chirpClips);
     }
+
+    public void PlayHowl()
+    {
+        mouthSource.PlayOneShot(howlClip, volume);
+    }
+
+    
 }
