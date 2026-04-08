@@ -5,6 +5,8 @@ public class GhoulAttack : MonoBehaviour
     [SerializeField] private Collider leftHandCollider;
     [SerializeField] private Collider rightHandCollider;
     [SerializeField] private Collider headCollider;
+    [SerializeField] private ParticleParentController leftParticleController;
+    [SerializeField] private ParticleParentController rightParticleController;
 
     private Animator animator;
 
@@ -23,21 +25,25 @@ public class GhoulAttack : MonoBehaviour
     public void EnableLeftHandCollider()
     {
         leftHandCollider.enabled = true;
+        leftParticleController.PlayAll();
     }
     
     public void DisableLeftHandCollider()
     {
         leftHandCollider.enabled = false;
+        leftParticleController.StopAll();
     }
 
     public void EnableRightHandCollider()
     {
         rightHandCollider.enabled = true;
+        rightParticleController.PlayAll();
     }
     
     public void DisableRightHandCollider()
     {
         rightHandCollider.enabled = false;
+        rightParticleController.StopAll();
     }
 
     public void EnableHeadCollider()
