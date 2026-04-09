@@ -15,6 +15,6 @@ public partial class IsTargetDeadCondition : Condition
         HealthSystem health = Target.Value.GetComponent<HealthSystem>();
         if (health == null) return false;
 
-        return health.isDead();
+        return health.IsDead();
     }
 }

@@ -93,6 +93,9 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
 
+        // Exhaustion speed multiplier — set by StaminaSystem (1.0 = normal, <1.0 = penalty)
+        private float _exhaustionSpeedMultiplier = 1.0f;
+
         [Header("Crouching")]
         [SerializeField] private float crouchHeight = 1.2f;
         [SerializeField] private Vector3 crouchCenter = new Vector3(0, 0.595f, 0);
@@ -100,7 +103,6 @@ namespace StarterAssets
         private float standHeight;
         private Vector3 standCenter;
         private bool crouched;
-
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -137,10 +139,8 @@ namespace StarterAssets
             }
         }
 
-
         private void Awake()
         {
-            // get a reference to our main camera
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -157,16 +157,14 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
+			Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
             AssignAnimationIDs();
 
-            // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
 
-            // Crouch values
             standCenter = _controller.center;
             standHeight = _controller.height;
         }
@@ -183,7 +181,6 @@ namespace StarterAssets
             if (_input.crouch)
             {
                 crouched = !crouched;
-
                 _input.crouch = false;
             }
         }
@@ -204,13 +201,11 @@ namespace StarterAssets
 
         private void GroundedCheck()
         {
-            // set sphere position, with offset
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
 
-            // update animator if using character
             if (_hasAnimator)
             {
                 _animator.SetBool(_animIDGrounded, Grounded);
@@ -219,28 +214,23 @@ namespace StarterAssets
 
         private void CameraRotation()
         {
-            // if there is an input and camera position is not fixed
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
-                //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
                 _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
             }
 
-            // clamp our rotations so our values are limited 360 degrees
             _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
-            // Cinemachine will follow this target
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
         }
 
         private void Move()
         {
-            // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : crouched ? CrouchSpeed : MoveSpeed;
 
             if (_input.sprint)
@@ -248,28 +238,22 @@ namespace StarterAssets
                 crouched = false;
             }
 
-            // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
-
-            // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-            // if there is no input, set the target speed to 0
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            // a reference to the players current horizontal velocity
+            // Apply exhaustion multiplier to cap speed below normal walk when exhausted
+            targetSpeed *= _exhaustionSpeedMultiplier;
+
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
             float speedOffset = 0.1f;
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
-            // accelerate or decelerate to target speed
             if (currentHorizontalSpeed < targetSpeed - speedOffset ||
                 currentHorizontalSpeed > targetSpeed + speedOffset)
             {
-                // creates curved result rather than a linear one giving a more organic speed change
-                // note T in Lerp is clamped, so we don't need to clamp our speed
                 _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
                     Time.deltaTime * SpeedChangeRate);
 
-                // round speed to 3 decimal places
                 _speed = Mathf.Round(_speed * 1000f) / 1000f;
             }
             else
@@ -280,11 +264,8 @@ namespace StarterAssets
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
-            // normalise input direction
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-            // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-            // if there is a move input rotate player when the player is moving
             if (_input.move != Vector2.zero)
             {
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
@@ -292,18 +273,14 @@ namespace StarterAssets
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                     RotationSmoothTime);
 
-                // rotate to face input direction relative to camera position
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
-
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-            // move the player
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
-            // update animator if using character
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
@@ -312,91 +289,63 @@ namespace StarterAssets
             }
         }
 
-        // private void UpdateControllerCollider()
-        // {
-        //     Vector3 targetCenter = standCenter;
-        //     float targetHeight = standHeight;
-
-        //     if (crouched)
-        //     {
-        //         targetCenter = crouchCenter;
-        //         targetHeight = crouchHeight;
-        //     }
-
-        //     _controller.height = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
-        //     _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
-        // }
-
-        // private void UpdateControllerCollider()
-        // {
-        //     float targetHeight = crouched ? crouchHeight : standHeight;
-
-        //     // Keep feet grounded by adjusting center based on height
-        //     float targetCenterY = targetHeight / 2f;
-
-        //     Vector3 targetCenter = new Vector3(0, targetCenterY, 0);
-
-        //     _controller.height = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
-        //     _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
-        // }
-
-        // private void UpdateControllerCollider()
-        // {
-        //     float targetHeight = crouched ? crouchHeight : standHeight;
-        //     Vector3 targetCenter = crouched ? crouchCenter : standCenter;
-
-        //     _controller.height = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
-        //     _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
-        // }
-
         private void UpdateControllerCollider()
         {
             float targetHeight = crouched ? crouchHeight : standHeight;
             Vector3 targetCenter = crouched ? crouchCenter : standCenter;
 
-            // Only expand upward if there's clearance overhead
             if (targetHeight > _controller.height)
             {
                 float heightDelta = targetHeight - _controller.height;
                 Vector3 topOfCapsule = transform.position + Vector3.up * (_controller.height + _controller.skinWidth);
                 bool blocked = Physics.SphereCast(topOfCapsule, _controller.radius, Vector3.up, out _, heightDelta, GroundLayers);
-
                 if (blocked) return;
             }
 
-            _controller.height = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
-            _controller.center = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
+            float newHeight = Mathf.Lerp(_controller.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
+            Vector3 newCenter = Vector3.Lerp(_controller.center, targetCenter, crouchTransitionSpeed * Time.deltaTime);
+
+            if (Mathf.Abs(newHeight - targetHeight) < 0.01f) newHeight = targetHeight;
+            if (Vector3.Distance(newCenter, targetCenter) < 0.01f) newCenter = targetCenter;
+
+            _controller.height = newHeight;
+            _controller.center = newCenter;
         }
 
         private void JumpAndGravity()
         {
+            if (float.IsNaN(_verticalVelocity) || float.IsInfinity(_verticalVelocity))
+            {
+                _verticalVelocity = -2f;
+            }
+
             if (Grounded)
             {
-                // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
 
-                // update animator if using character
                 if (_hasAnimator)
                 {
                     _animator.SetBool(_animIDJump, false);
                     _animator.SetBool(_animIDFreeFall, false);
                 }
 
-                // stop our velocity dropping infinitely when grounded
                 if (_verticalVelocity < 0.0f)
                 {
                     _verticalVelocity = -2f;
                 }
 
-                // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
                     if (!_animator.IsInTransition(0) && !crouched)
                     {
-                        _input.jump = false;  // only clear when actually jumping
-                        Debug.Log($"Jump calc input: {JumpHeight * -2f * Gravity}");
-                        _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-                        if (_hasAnimator) _animator.SetBool(_animIDJump, true);
+                        _input.jump = false;
+                        float jumpCalc = JumpHeight * -2f * Gravity;
+                        _verticalVelocity = Mathf.Sqrt(Mathf.Max(0f, jumpCalc));
+
+                        if (_hasAnimator)
+                        {
+                            _animator.SetBool(_animIDJump, true);
+                        }
                     }
                     else if (crouched)
                     {
@@ -405,7 +354,6 @@ namespace StarterAssets
                     }
                 }
 
-                // jump timeout
                 if (_jumpTimeoutDelta >= 0.0f)
                 {
                     _jumpTimeoutDelta -= Time.deltaTime;
@@ -413,32 +361,36 @@ namespace StarterAssets
             }
             else
             {
-                // reset the jump timeout timer
                 _jumpTimeoutDelta = JumpTimeout;
 
-                // fall timeout
                 if (_fallTimeoutDelta >= 0.0f)
                 {
                     _fallTimeoutDelta -= Time.deltaTime;
                 }
                 else
                 {
-                    // update animator if using character
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDFreeFall, true);
                     }
                 }
 
-                // if we are not grounded, do not jump
                 _input.jump = false;
             }
 
-            // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
             if (_verticalVelocity < _terminalVelocity)
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
+        }
+
+        /// <summary>
+        /// Called by StaminaSystem to apply or remove an exhaustion movement penalty.
+        /// Pass 1.0 to restore normal speed, less than 1.0 to penalize.
+        /// </summary>
+        public void SetExhaustionMultiplier(float multiplier)
+        {
+            _exhaustionSpeedMultiplier = Mathf.Clamp01(multiplier);
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -456,7 +408,6 @@ namespace StarterAssets
             if (Grounded) Gizmos.color = transparentGreen;
             else Gizmos.color = transparentRed;
 
-            // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
             Gizmos.DrawSphere(
                 new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
                 GroundedRadius);
@@ -466,7 +417,6 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-
                 if (AudioFootsteps != null)
                     AudioFootsteps.Play();
                 if (AudioFoley != null)
@@ -480,13 +430,12 @@ namespace StarterAssets
             {
                 if (LandingAudio != null)
                     LandingAudio.Play();
-
             }
         }
 
         public bool IsCrouched()
         {
             return crouched;
-        } 
+        }
     }
 }

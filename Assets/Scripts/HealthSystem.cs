@@ -1,56 +1,82 @@
 using UnityEngine;
-// using Math;
+using UnityEngine.Events;
 
 public class HealthSystem : MonoBehaviour
 {
+    [Header("Health Settings")]
+    [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float health;
-    [SerializeField] private float maxHealth;
+
+    [Header("References")]
     [SerializeField] private MonoBehaviour playerController;
-
-    private Animator anim;
-    private PlayerSFXHandler sfx;
     public CameraVFXHandler vfxCam;
-    private bool dead;
 
-    void Start()
+    [Header("Events")]
+    public UnityEvent<float> OnHealthChanged;   // normalized 0-1, drives HUD bar
+    public UnityEvent OnHit;                    // wire to sfx.PlayHitSound, anim Hit trigger, etc.
+    public UnityEvent OnDeath;                  // wire to sfx.PlayDeath, GameStateManager.Lose, etc.
+
+    private Animator _anim;
+    private PlayerSFXHandler _sfx;
+    private bool _dead;
+
+    private void Start()
     {
-        anim = GetComponent<Animator>();
-        sfx = GetComponent<PlayerSFXHandler>();
+        _anim = GetComponent<Animator>();
+        _sfx = GetComponent<PlayerSFXHandler>();
+
+        health = maxHealth;
+        OnHealthChanged?.Invoke(GetHealthNormalized());
     }
 
     public void TakeDamage(float damage)
     {
-        sfx.PlayHitSound();
-        vfxCam.TakeDamageEffect();
+        if (_dead) return;
 
-        anim.SetTrigger("Hit");
         health = Mathf.Clamp(health - damage, 0f, maxHealth);
         Debug.Log(health);
 
-        if (health <= 0 && !dead)
-        {
+        OnHit?.Invoke();
+        vfxCam?.TakeDamageEffect();
+
+        if (_anim != null)
+            _anim.SetTrigger("Hit");
+
+        OnHealthChanged?.Invoke(GetHealthNormalized());
+
+        if (health <= 0f)
             Die();
-        }
+    }
+
+    public void Heal(float amount)
+    {
+        if (_dead) return;
+
+        health = Mathf.Min(maxHealth, health + amount);
+        OnHealthChanged?.Invoke(GetHealthNormalized());
     }
 
     public void Die()
     {
-        dead = true;
+        if (_dead) return;
+        _dead = true;
 
-        // disable player controller
         if (playerController != null)
             playerController.enabled = false;
 
-        sfx.PlayDeath();
-        anim.SetTrigger("Dead");
-        anim.SetLayerWeight(anim.GetLayerIndex("Combat"), 0f);
+        if (_anim != null)
+        {
+            _anim.SetTrigger("Dead");
+            _anim.SetLayerWeight(_anim.GetLayerIndex("Combat"), 0f);
+        }
 
-        GameStateManager.Instance.Lose();
-        // call lose UI here.
+        // OnDeath replaces direct GameStateManager and sfx calls.
+        // Wire in Inspector: sfx.PlayDeath, GameStateManager.Instance.Lose, lose UI, etc.
+        OnDeath?.Invoke();
     }
 
-    public bool isDead()
-    {
-        return dead;
-    }
+    public float GetHealthNormalized() => health / maxHealth;
+    public float GetCurrentHealth() => health;
+    public float GetMaxHealth() => maxHealth;
+    public bool IsDead() => _dead;
 }
