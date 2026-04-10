@@ -7048,8 +7048,9 @@ GameObject:
   - component: {fileID: 2725274989923958627}
   - component: {fileID: 7766402550620623877}
   - component: {fileID: 4037244286516471221}
+  - component: {fileID: 8524059727270562081}
   m_Layer: 7
-  m_Name: Ghoul
+  m_Name: Normal
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7176,13 +7177,41 @@ MonoBehaviour:
   - rid: 7171615559369621837
   - rid: 7171615630234484736
   - rid: 7171615630234484737
-  - rid: 7171615630234484738
+  - rid: 7171615630529658958
+  - rid: 3307949127297925876
+  - rid: 3307949127561380581
+  - rid: 3307949127561380582
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
     RefIds:
+    - rid: 3307949127297925876
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8760279052107455253
+          m_Value1: 5423184102303935109
+        Name: Attacks
+        m_Value:
+        - Attack
+    - rid: 3307949127561380581
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 12198308119127309548
+          m_Value1: 353285895717892469
+        Name: ChaseSpeed
+        m_Value: 4
+    - rid: 3307949127561380582
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 13059195885674421742
+          m_Value1: 3585154466182001181
+        Name: FollowSpeed
+        m_Value: 3
     - rid: 7171615559369621836
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -7215,18 +7244,14 @@ MonoBehaviour:
           m_Value1: 12218956237733800318
         Name: Line Of Sight Detector
         m_Value: {fileID: 5670209278861123269}
-    - rid: 7171615630234484738
+    - rid: 7171615630529658958
       type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 7616017503111066435
           m_Value1: 18202490448834709410
         Name: PatrolPoints
-        m_Value:
-        - {fileID: 0}
-        - {fileID: 0}
-        - {fileID: 0}
-        - {fileID: 0}
+        m_Value: []
 --- !u!114 &7766402550620623877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7267,6 +7292,29 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9c6d6d6e0dda3a84b8db68a016823ba7, type: 3}
   - {fileID: 8300000, guid: 67226beaf09084f4689e913d7255ae11, type: 3}
   volume: 0.5
+--- !u!136 &8524059727270562081
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712200192507160636}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5755211437197302625
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class PlayerHUD : MonoBehaviour
     private const float staminaFadeDelay = 2f;
     private bool staminaWasFull = false;
 
-    private void Start()
+    private void Awake()
     {
         HealthSystem health = FindObjectOfType<HealthSystem>();
         StaminaSystem stamina = FindObjectOfType<StaminaSystem>();
@@ -31,6 +31,18 @@ public class PlayerHUD : MonoBehaviour
         if (stamina != null)
             stamina.OnStaminaChanged.AddListener(UpdateStaminaBar);
     }
+
+    // private void Start()
+    // {
+    //     HealthSystem health = FindObjectOfType<HealthSystem>();
+    //     StaminaSystem stamina = FindObjectOfType<StaminaSystem>();
+
+    //     if (health != null)
+    //         health.OnHealthChanged.AddListener(UpdateHealthBar);
+
+    //     if (stamina != null)
+    //         stamina.OnStaminaChanged.AddListener(UpdateStaminaBar);
+    // }
 
     public void UpdateHealthBar(float normalized)
     {

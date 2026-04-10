@@ -5,20 +5,19 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "SmoothLookAt", story: "[Self] slowly looks at [Target]", category: "Action", id: "929badf26e4bdf3293b5471709975b48")]
+[NodeDescription(name: "SmoothLookAt", story: "[Agent] slowly looks at [Target]", category: "Action", id: "929badf26e4bdf3293b5471709975b48")]
 public partial class SmoothLookAtAction : Action
 {
-    [SerializeReference] public BlackboardVariable<GameObject> Self;
+    [SerializeReference] public BlackboardVariable<GameObject> Agent;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
-
     public float rotationSpeed = 15f;
 
     protected override Status OnUpdate()
     {
-        if (Self.Value == null || Target.Value == null)
+        if (Agent.Value == null || Target.Value == null)
             return Status.Failure;
 
-        Transform selfTransform = Self.Value.transform;
+        Transform selfTransform = Agent.Value.transform;
 
         Vector3 direction = Target.Value.transform.position - selfTransform.position;
         direction.y = 0f;

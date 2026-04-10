@@ -14,6 +14,9 @@ public class GhoulSFXHandler : MonoBehaviour
     [Header("Screams")]
     public AudioClip[] screamClips;
 
+    [Header("Grunts")]
+    public AudioClip[] gruntClips;
+
     [Range(0f, 1f)] public float volume = 1f;
     private void PlayRandom(AudioSource source, AudioClip[] clips)
     {
@@ -28,6 +31,11 @@ public class GhoulSFXHandler : MonoBehaviour
     public void PlayAttackSound()
     {
         attackSource.Play();
+    }
+
+    public void PlayGrunt()
+    {
+        PlayRandom(mouthSource, gruntClips);
     }
 
     public void PlayFootstep()

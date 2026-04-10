@@ -9,6 +9,7 @@ public class PlayerSFXHandler : MonoBehaviour
     [Range(0f, 1f)] public float volume = 1f;
 
     public AudioClip heartbeatClip;
+    public AudioClip breathingClip;
 
     [Header("Footsteps")]
     public AudioClip[] footstepClips;
@@ -52,6 +53,11 @@ public class PlayerSFXHandler : MonoBehaviour
     public void PlayHeartbeat()
     {
         foleySource.PlayOneShot(heartbeatClip, volume);
+    }
+
+    public void PlayBreathing()
+    {
+        mouthSource.PlayOneShot(breathingClip, volume);
     }
 
     public void disableMouthSource()
