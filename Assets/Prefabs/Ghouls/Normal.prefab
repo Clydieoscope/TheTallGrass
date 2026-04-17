@@ -7437,6 +7437,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 87ca983b99c1da54797e47efaf35b7a0, type: 3}
   - {fileID: 8300000, guid: b879ad5600eaaf44bbdbd933fde9079c, type: 3}
   - {fileID: 8300000, guid: 94708ebf2911bf446a304b44c2095fdc, type: 3}
+  hitClips:
+  - {fileID: 8300000, guid: 361b42e757bd2b44196fa08e5246d181, type: 3}
+  - {fileID: 8300000, guid: bc5c976862fabf84aab8e38675c5a439, type: 3}
+  - {fileID: 8300000, guid: 82cade5b20a3fb3488fe325c94e8b608, type: 3}
   volume: 0.5
 --- !u!136 &8524059727270562081
 CapsuleCollider:
@@ -7497,6 +7501,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4037244286516471221}
         m_TargetAssemblyTypeName: GhoulSFXHandler, Assembly-CSharp
         m_MethodName: PlayGrunt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4037244286516471221}
+        m_TargetAssemblyTypeName: GhoulSFXHandler, Assembly-CSharp
+        m_MethodName: PlayHit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

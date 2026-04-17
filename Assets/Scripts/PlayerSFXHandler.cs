@@ -17,6 +17,12 @@ public class PlayerSFXHandler : MonoBehaviour
     [Header("Hit")]
     public AudioClip[] hitClips;
 
+    [Header("Attack")]
+    public AudioClip[] wooshClips;
+
+    [Header("Grunt")]
+    public AudioClip[] gruntClips;
+
     [Header("Pain")]
     public AudioClip[] painClips;
 
@@ -38,6 +44,12 @@ public class PlayerSFXHandler : MonoBehaviour
     {
         PlayRandom(foleySource, hitClips);
         PlayRandom(mouthSource, painClips);
+    }
+
+    public void PlayAttackSound()
+    {
+        PlayRandom(foleySource, wooshClips);
+        PlayRandom(mouthSource, gruntClips);
     }
 
     public void PlayFootstep()
