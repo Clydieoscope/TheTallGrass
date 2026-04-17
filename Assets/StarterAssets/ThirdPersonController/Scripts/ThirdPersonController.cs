@@ -114,6 +114,7 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        private int _animIDAttack;
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -178,6 +179,8 @@ namespace StarterAssets
             Move();
             UpdateControllerCollider();
 
+            Attack();
+
             if (_input.crouch)
             {
                 crouched = !crouched;
@@ -197,6 +200,7 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            _animIDAttack = Animator.StringToHash("Attack");
         }
 
         private void GroundedCheck()
@@ -430,6 +434,17 @@ namespace StarterAssets
             {
                 if (LandingAudio != null)
                     LandingAudio.Play();
+            }
+        }
+
+        private void Attack()
+        {
+            if (_input.attack)
+            {
+                if (_hasAnimator)
+                    _animator.SetTrigger(_animIDAttack);
+
+                _input.attack = false;
             }
         }
 

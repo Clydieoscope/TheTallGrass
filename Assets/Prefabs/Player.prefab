@@ -189,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 1478540871690989694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29999924, y: 1.3050001, z: -1.9999981}
+  m_LocalPosition: {x: 0.29999924, y: 1.3049998, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -375,7 +375,7 @@ Transform:
   m_GameObject: {fileID: 1822523490402326452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.29999924, y: 1.3050001, z: -1.9999981}
+  m_LocalPosition: {x: 0.29999924, y: 1.305, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -817,8 +817,10 @@ GameObject:
   - component: {fileID: 3624419076877393196}
   - component: {fileID: 4297544559015554757}
   - component: {fileID: 4371322354483703244}
+  - component: {fileID: 3771307010160742299}
+  - component: {fileID: 3828593526739333893}
   m_Layer: 8
-  m_Name: Armature
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -977,6 +979,7 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   crouch: 0
+  attack: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -1090,10 +1093,113 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc9a180cf5461641a1478b33805a26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 1000
-  maxHealth: 1000
-  playerController: {fileID: 2359378693500386118}
-  mouthSource: {fileID: 4720771376913543992}
+  maxHealth: 100
+  health: 100
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerHUD, Assembly-CSharp
+        m_MethodName: UpdateHealthBar
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  OnHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3828593526739333893}
+        m_TargetAssemblyTypeName: PlayerSFXHandler, Assembly-CSharp
+        m_MethodName: PlayHitSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PlayHitSound
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CameraVFXHandler, Assembly-CSharp
+        m_MethodName: TakeDamageEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PlayHitSound
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3828593526739333893}
+        m_TargetAssemblyTypeName: PlayerSFXHandler, Assembly-CSharp
+        m_MethodName: PlayDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
+        m_MethodName: Lose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameVFXHandler, Assembly-CSharp
+        m_MethodName: PlayDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CameraVFXHandler, Assembly-CSharp
+        m_MethodName: DeathEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6932515823108135480}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4371322354483703244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,6 +1213,95 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StealthSystem
   maxStealth: 10
+--- !u!114 &3771307010160742299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6932515823108135480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d151b5ed69bcfe8429fe56156b267ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StaminaSystem
+  maxStamina: 100
+  drainRate: 10
+  regenRate: 10
+  regenDelay: 1.5
+  exhaustionSpeedMultiplier: 0.7
+  recoveryThreshold: 20
+  OnStaminaChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerHUD, Assembly-CSharp
+        m_MethodName: UpdateStaminaBar
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExhausted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3828593526739333893}
+        m_TargetAssemblyTypeName: PlayerSFXHandler, Assembly-CSharp
+        m_MethodName: PlayBreathing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnRecovered:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3828593526739333893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6932515823108135480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d589a45b3c5974d8f3b730de99764c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  footstepSource: {fileID: 7343266699560551136}
+  foleySource: {fileID: 5995628653123265667}
+  mouthSource: {fileID: 4720771376913543992}
+  volume: 1
+  heartbeatClip: {fileID: 8300000, guid: f68bbde00aba72640abf43373c0776fa, type: 3}
+  breathingClip: {fileID: 8300000, guid: c0f75ae91f87ed24ba0400d62f4eadb0, type: 3}
+  footstepClips: []
+  hitClips:
+  - {fileID: 8300000, guid: d8a46ab857a6be34fbaf9a330a1d15c0, type: 3}
+  - {fileID: 8300000, guid: cf6fd86e1c1738446a9bf255cdb1c463, type: 3}
+  - {fileID: 8300000, guid: 184fd4b3728d33a41b0b7c564324332e, type: 3}
+  - {fileID: 8300000, guid: e1fc7e32d9ad89849be007b25b5a788b, type: 3}
+  painClips:
+  - {fileID: 8300000, guid: f924e45ae8b69db458ff9d5be4ac7129, type: 3}
+  - {fileID: 8300000, guid: 124d6f448c3c7cd4bbe2075773174a63, type: 3}
+  - {fileID: 8300000, guid: 32af233b50286384e9e4aefd175f6eeb, type: 3}
+  - {fileID: 8300000, guid: 0ceb5e50b3ef3b442a40ed182aa6d2c6, type: 3}
+  - {fileID: 8300000, guid: 08e14e799a53b7141af5f19f61107d48, type: 3}
+  - {fileID: 8300000, guid: 3b5588bef763c3c40b83b1be3d7c334f, type: 3}
+  - {fileID: 8300000, guid: 001a1a8c452526148b25c9d6a58fd93b, type: 3}
+  - {fileID: 8300000, guid: ea0ec0b3302e92b4f821b76d8e035cf5, type: 3}
+  - {fileID: 8300000, guid: 1571b60a89d65ea49869cccc5f5b4e16, type: 3}
+  - {fileID: 8300000, guid: ee96bee118347144281a2a4ee5ff4766, type: 3}
+  - {fileID: 8300000, guid: 38fe56d96dd37f4429507bbdc0c0e1d9, type: 3}
+  deathClips:
+  - {fileID: 8300000, guid: a111ed40c60e69c43b4e41d80d7ae512, type: 3}
 --- !u!1 &7098922225849175258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,11 +1345,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: c0f75ae91f87ed24ba0400d62f4eadb0, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

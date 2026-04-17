@@ -9,5 +9,7 @@ public enum State
 	Patrol,
 	Alert,
 	Chase,
-	Attack
+	Attack,
+	Hit,
+	Dead
 }

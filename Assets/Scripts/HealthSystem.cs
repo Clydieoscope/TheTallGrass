@@ -7,23 +7,17 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float health;
 
-    [Header("References")]
-    [SerializeField] private MonoBehaviour playerController;
-    public CameraVFXHandler vfxCam;
-
     [Header("Events")]
     public UnityEvent<float> OnHealthChanged;   // normalized 0-1, drives HUD bar
-    public UnityEvent OnHit;                    // wire to sfx.PlayHitSound, anim Hit trigger, etc.
-    public UnityEvent OnDeath;                  // wire to sfx.PlayDeath, GameStateManager.Lose, etc.
+    public UnityEvent OnHit;                    // wire to sfx, animator triggers, vfx, etc.
+    public UnityEvent OnDeath;                  // wire to sfx, GameStateManager, enemy removal, etc.
 
     private Animator _anim;
-    private PlayerSFXHandler _sfx;
     private bool _dead;
 
     private void Start()
     {
         _anim = GetComponent<Animator>();
-        _sfx = GetComponent<PlayerSFXHandler>();
 
         health = maxHealth;
         OnHealthChanged?.Invoke(GetHealthNormalized());
@@ -34,10 +28,8 @@ public class HealthSystem : MonoBehaviour
         if (_dead) return;
 
         health = Mathf.Clamp(health - damage, 0f, maxHealth);
-        Debug.Log(health);
 
         OnHit?.Invoke();
-        vfxCam?.TakeDamageEffect();
 
         if (_anim != null)
             _anim.SetTrigger("Hit");
@@ -61,17 +53,12 @@ public class HealthSystem : MonoBehaviour
         if (_dead) return;
         _dead = true;
 
-        if (playerController != null)
-            playerController.enabled = false;
-
         if (_anim != null)
         {
             _anim.SetTrigger("Dead");
             _anim.SetLayerWeight(_anim.GetLayerIndex("Combat"), 0f);
         }
 
-        // OnDeath replaces direct GameStateManager and sfx calls.
-        // Wire in Inspector: sfx.PlayDeath, GameStateManager.Instance.Lose, lose UI, etc.
         OnDeath?.Invoke();
     }
 

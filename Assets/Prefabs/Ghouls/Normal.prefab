@@ -7049,6 +7049,7 @@ GameObject:
   - component: {fileID: 7766402550620623877}
   - component: {fileID: 4037244286516471221}
   - component: {fileID: 8524059727270562081}
+  - component: {fileID: 3342964086435222565}
   m_Layer: 7
   m_Name: Normal
   m_TagString: Enemy
@@ -7291,6 +7292,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 159c4d9fe0018b34db02b8c0d1d9b154, type: 3}
   - {fileID: 8300000, guid: 9c6d6d6e0dda3a84b8db68a016823ba7, type: 3}
   - {fileID: 8300000, guid: 67226beaf09084f4689e913d7255ae11, type: 3}
+  gruntClips: []
   volume: 0.5
 --- !u!136 &8524059727270562081
 CapsuleCollider:
@@ -7311,10 +7313,45 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &3342964086435222565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712200192507160636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc9a180cf5461641a1478b33805a26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
+  maxHealth: 50
+  health: 50
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4037244286516471221}
+        m_TargetAssemblyTypeName: GhoulSFXHandler, Assembly-CSharp
+        m_MethodName: PlayGrunt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5755211437197302625
 GameObject:
   m_ObjectHideFlags: 0

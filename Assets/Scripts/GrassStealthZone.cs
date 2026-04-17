@@ -3,20 +3,20 @@ using UnityEngine;
 public class GrassStealthZone : MonoBehaviour
 {
     [SerializeField] private float stealthAmount = 1f;
-    private Animator animator;
+    private GrassSFXHandler sfx;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        sfx = this.GetComponent<GrassSFXHandler>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        animator.SetTrigger("IsTouched");
 
         if (other.CompareTag("Player"))
         {
             StealthSystem stealth = other.GetComponent<StealthSystem>();
+            sfx.PlayRustle();
 
             if (stealth != null)
             {
@@ -27,12 +27,11 @@ public class GrassStealthZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        animator.SetTrigger("IsTouched");
-
 
         if (other.CompareTag("Player"))
         {
             StealthSystem stealth = other.GetComponent<StealthSystem>();
+            sfx.PlayRustle();
 
             if (stealth != null)
             {
