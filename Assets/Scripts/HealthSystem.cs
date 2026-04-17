@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class HealthSystem : MonoBehaviour
 {
+    public Team team;
+
     [Header("Health Settings")]
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float health;
@@ -31,9 +33,6 @@ public class HealthSystem : MonoBehaviour
 
         OnHit?.Invoke();
 
-        if (_anim != null)
-            _anim.SetTrigger("Hit");
-
         OnHealthChanged?.Invoke(GetHealthNormalized());
 
         if (health <= 0f)
@@ -55,7 +54,6 @@ public class HealthSystem : MonoBehaviour
 
         if (_anim != null)
         {
-            _anim.SetTrigger("Dead");
             _anim.SetLayerWeight(_anim.GetLayerIndex("Combat"), 0f);
         }
 

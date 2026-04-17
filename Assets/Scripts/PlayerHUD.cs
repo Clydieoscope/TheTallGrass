@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
 {
+    [SerializeField] private HealthSystem health;
+    [SerializeField] private StaminaSystem stamina;
+
     [Header("Health Bar")]
     [SerializeField] private Image healthBarFill;
     [SerializeField] private CanvasGroup healthCanvasGroup;
@@ -20,11 +23,9 @@ public class PlayerHUD : MonoBehaviour
     private const float staminaFadeDelay = 2f;
     private bool staminaWasFull = false;
 
+
     private void Awake()
     {
-        HealthSystem health = FindObjectOfType<HealthSystem>();
-        StaminaSystem stamina = FindObjectOfType<StaminaSystem>();
-
         if (health != null)
             health.OnHealthChanged.AddListener(UpdateHealthBar);
 

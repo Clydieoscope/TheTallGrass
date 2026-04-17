@@ -56,17 +56,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rusher
       objectReference: {fileID: 0}
+    - target: {fileID: 5712200192507160636, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5792551987180018412, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.848
+      value: 1.5254412
       objectReference: {fileID: 0}
     - target: {fileID: 5792551987180018412, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000003123665
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5792551987180018412, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.381
+      value: -0.30490875
       objectReference: {fileID: 0}
     - target: {fileID: 5792551987180018412, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
       propertyPath: m_LocalRotation.w

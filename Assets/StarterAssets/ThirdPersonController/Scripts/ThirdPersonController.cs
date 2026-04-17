@@ -87,8 +87,9 @@ namespace StarterAssets
 
         // player
         private float _speed;
-        private float _animationBlend;
-        private float _targetRotation = 0.0f;
+        private float _animVelocityX;
+        private float _animVelocityZ;
+        // private float _targetRotation = 0.0f;
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
@@ -109,11 +110,11 @@ namespace StarterAssets
         private float _fallTimeoutDelta;
 
         // animation IDs
-        private int _animIDSpeed;
+        private int _animIDVelocityX;
+        private int _animIDVelocityZ;
         private int _animIDGrounded;
         private int _animIDJump;
         private int _animIDFreeFall;
-        private int _animIDMotionSpeed;
         private int _animIDAttack;
 
 #if ENABLE_INPUT_SYSTEM 
@@ -195,11 +196,11 @@ namespace StarterAssets
 
         private void AssignAnimationIDs()
         {
-            _animIDSpeed = Animator.StringToHash("Speed");
+            _animIDVelocityX = Animator.StringToHash("VelocityX");
+            _animIDVelocityZ = Animator.StringToHash("VelocityZ");
             _animIDGrounded = Animator.StringToHash("Grounded");
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
-            _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
             _animIDAttack = Animator.StringToHash("Attack");
         }
 
@@ -238,17 +239,14 @@ namespace StarterAssets
             float targetSpeed = _input.sprint ? SprintSpeed : crouched ? CrouchSpeed : MoveSpeed;
 
             if (_input.sprint)
-            {
                 crouched = false;
-            }
 
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            // Apply exhaustion multiplier to cap speed below normal walk when exhausted
+            // Apply exhaustion multiplier
             targetSpeed *= _exhaustionSpeedMultiplier;
 
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-
             float speedOffset = 0.1f;
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
@@ -257,7 +255,6 @@ namespace StarterAssets
             {
                 _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
                     Time.deltaTime * SpeedChangeRate);
-
                 _speed = Mathf.Round(_speed * 1000f) / 1000f;
             }
             else
@@ -265,30 +262,36 @@ namespace StarterAssets
                 _speed = targetSpeed;
             }
 
-            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-            if (_animationBlend < 0.01f) _animationBlend = 0f;
+            // Rotate character to always face camera forward direction
+            float cameraYaw = _mainCamera.transform.eulerAngles.y;
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.Euler(0f, cameraYaw, 0f),
+                RotationSmoothTime > 0 ? Time.deltaTime / RotationSmoothTime : 1f
+            );
 
+            // Move direction is camera-relative: W = forward, A = left, D = right, S = back
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+            Vector3 moveDirection = Quaternion.Euler(0f, cameraYaw, 0f) * inputDirection;
 
-            if (_input.move != Vector2.zero)
-            {
-                _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                                  _mainCamera.transform.eulerAngles.y;
-                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                    RotationSmoothTime);
-
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-            }
-
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+            _controller.Move(moveDirection * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+
+            // Compute local-space velocity for the 2D blend tree
+            // Project world velocity onto character's local axes
+            Vector3 worldVelocity = new Vector3(_controller.velocity.x, 0f, _controller.velocity.z);
+            Vector3 localVelocity = transform.InverseTransformDirection(worldVelocity);
+
+            float targetVelocityX = localVelocity.x;
+            float targetVelocityZ = localVelocity.z;
+
+            _animVelocityX = Mathf.Lerp(_animVelocityX, targetVelocityX, Time.deltaTime * SpeedChangeRate);
+            _animVelocityZ = Mathf.Lerp(_animVelocityZ, targetVelocityZ, Time.deltaTime * SpeedChangeRate);
 
             if (_hasAnimator)
             {
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                _animator.SetFloat(_animIDVelocityX, _animVelocityX);
+                _animator.SetFloat(_animIDVelocityZ, _animVelocityZ);
                 _animator.SetBool("Crouched", crouched);
             }
         }
@@ -319,9 +322,7 @@ namespace StarterAssets
         private void JumpAndGravity()
         {
             if (float.IsNaN(_verticalVelocity) || float.IsInfinity(_verticalVelocity))
-            {
                 _verticalVelocity = -2f;
-            }
 
             if (Grounded)
             {
@@ -334,9 +335,7 @@ namespace StarterAssets
                 }
 
                 if (_verticalVelocity < 0.0f)
-                {
                     _verticalVelocity = -2f;
-                }
 
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
@@ -347,9 +346,7 @@ namespace StarterAssets
                         _verticalVelocity = Mathf.Sqrt(Mathf.Max(0f, jumpCalc));
 
                         if (_hasAnimator)
-                        {
                             _animator.SetBool(_animIDJump, true);
-                        }
                     }
                     else if (crouched)
                     {
@@ -359,33 +356,25 @@ namespace StarterAssets
                 }
 
                 if (_jumpTimeoutDelta >= 0.0f)
-                {
                     _jumpTimeoutDelta -= Time.deltaTime;
-                }
             }
             else
             {
                 _jumpTimeoutDelta = JumpTimeout;
 
                 if (_fallTimeoutDelta >= 0.0f)
-                {
                     _fallTimeoutDelta -= Time.deltaTime;
-                }
                 else
                 {
                     if (_hasAnimator)
-                    {
                         _animator.SetBool(_animIDFreeFall, true);
-                    }
                 }
 
                 _input.jump = false;
             }
 
             if (_verticalVelocity < _terminalVelocity)
-            {
                 _verticalVelocity += Gravity * Time.deltaTime;
-            }
         }
 
         /// <summary>
