@@ -10,7 +10,7 @@ public partial class SpawnAgentAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Spawner;
     [SerializeReference] public BlackboardVariable<GameObject> Agent;
-    public static Action<GameObject> OnAgentSpawned;
+    public static Action<GameObject, GameObject> OnAgentSpawned;
 
     protected override Status OnStart()
     {
@@ -29,7 +29,7 @@ public partial class SpawnAgentAction : Action
         // Instantiate a fresh copy of the prefab
         GameObject newAgent = UnityEngine.Object.Instantiate(Agent.Value, spawnPos, spawnRot);
 
-        GameEvents.OnAgentSpawned?.Invoke(newAgent);
+        GameEvents.OnAgentSpawned?.Invoke(newAgent, Spawner.Value);
 
         return Status.Success;
     }
@@ -42,6 +42,6 @@ public partial class SpawnAgentAction : Action
 
 public static class GameEvents
 {
-    public static Action<GameObject> OnAgentSpawned;
+    public static Action<GameObject, GameObject> OnAgentSpawned;
 }
 
