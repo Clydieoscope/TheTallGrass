@@ -11,6 +11,8 @@ public class HealthSystem : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent<float> OnHealthChanged;   // normalized 0-1, drives HUD bar
+    public UnityEvent OnLowHealth;
+    public UnityEvent OnHighHealth;
     public UnityEvent OnHit;                    // wire to sfx, animator triggers, vfx, etc.
     public UnityEvent OnDeath;                  // wire to sfx, GameStateManager, enemy removal, etc.
 
@@ -35,6 +37,9 @@ public class HealthSystem : MonoBehaviour
 
         OnHealthChanged?.Invoke(GetHealthNormalized());
 
+        if (health <= maxHealth / 2)
+            OnLowHealth?.Invoke();
+
         if (health <= 0f)
             Die();
     }
@@ -42,6 +47,9 @@ public class HealthSystem : MonoBehaviour
     public void Heal(float amount)
     {
         if (_dead) return;
+
+        if (health > maxHealth / 2)
+            OnHighHealth?.Invoke();
 
         health = Mathf.Min(maxHealth, health + amount);
         OnHealthChanged?.Invoke(GetHealthNormalized());

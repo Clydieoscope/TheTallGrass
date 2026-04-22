@@ -1142,7 +1142,7 @@ Transform:
   m_GameObject: {fileID: 8710924068919852356}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -47.49, y: 1.13, z: -10.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1160,9 +1160,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1671692599752613487, guid: 16c1f08d990e5a341bb9376021ab5164, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 24b9146636e1ab3418e394c6d55a14f1, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1.4
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1170,9 +1170,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1205,7 +1205,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1295,6 +1295,14 @@ MonoBehaviour:
   mainAudioSource: {fileID: 7355969183131562702}
   lowHealthAudioSource: {fileID: 283435533001772928}
   dangerAudioSource: {fileID: 8103403766219581911}
+  creepySiren: {fileID: 8300000, guid: 7e41858c32714024fb84ba6821b54011, type: 3}
+  pickup: {fileID: 8300000, guid: 8ea1e24a0587e7f4f89d9e15748fddfd, type: 3}
+  hit: {fileID: 8300000, guid: f68bbde00aba72640abf43373c0776fa, type: 3}
+  spotted: {fileID: 8300000, guid: d863a30434ead50458e7ff86abf0b599, type: 3}
+  warning_1: {fileID: 8300000, guid: b7768449e3425cf438f0fcd78d0122e7, type: 3}
+  warning_2: {fileID: 8300000, guid: eabe0f31f2fde23448749e2db43e5187, type: 3}
+  warning_3: {fileID: 8300000, guid: 161b88b3065498f479f9da6921fe5c0c, type: 3}
+  volume: 1
 --- !u!1 &8868687249931193394
 GameObject:
   m_ObjectHideFlags: 0

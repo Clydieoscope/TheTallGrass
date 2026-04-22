@@ -7485,6 +7485,12 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
+  OnLowHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHighHealth:
+    m_PersistentCalls:
+      m_Calls: []
   OnHit:
     m_PersistentCalls:
       m_Calls:
