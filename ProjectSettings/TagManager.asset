@@ -7,6 +7,7 @@ TagManager:
   - Entity
   - CinemachineTarget
   - Enemy
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - Player
   - PostProcessing
   - Grass
-  - 
-  - 
+  - Wall
+  - Train
   - 
   - 
   - 

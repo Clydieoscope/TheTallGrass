@@ -14,6 +14,8 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        public static ThirdPersonController Instance { get; private set; }
+
         [Header("Player")]
         [Tooltip("Crouch speed of the character in m/s")]
         public float CrouchSpeed = 1.0f;
@@ -97,6 +99,8 @@ namespace StarterAssets
         // Exhaustion speed multiplier — set by StaminaSystem (1.0 = normal, <1.0 = penalty)
         private float _exhaustionSpeedMultiplier = 1.0f;
 
+        private bool _hasWeapon = false;
+
         [Header("Crouching")]
         [SerializeField] private float crouchHeight = 1.2f;
         [SerializeField] private Vector3 crouchCenter = new Vector3(0, 0.595f, 0);
@@ -143,10 +147,15 @@ namespace StarterAssets
 
         private void Awake()
         {
-            if (_mainCamera == null)
+            if (Instance != null && Instance != this)
             {
-                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                Destroy(gameObject);
+                return;
             }
+            Instance = this;
+
+            if (_mainCamera == null)
+                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         }
 
         private void Start()
@@ -430,6 +439,13 @@ namespace StarterAssets
         {
             if (_input.attack)
             {
+                if (!_hasWeapon || _animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+                {
+                    _animator.ResetTrigger(_animIDAttack);
+                    _input.attack = false;
+                    return;
+                }
+
                 if (_hasAnimator)
                     _animator.SetTrigger(_animIDAttack);
 
@@ -441,5 +457,7 @@ namespace StarterAssets
         {
             return crouched;
         }
+
+        public void EquipWeapon() => _hasWeapon = true;
     }
 }

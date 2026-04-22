@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-8741788577215367703
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rustle3_{-8741788577215367703}
+  m_AudioClip: {fileID: 8300000, guid: 76bcd375c94380b4891557a0900689f6, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-8687611655720667292
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rustle2_{-8687611655720667292}
+  m_AudioClip: {fileID: 8300000, guid: 24e0c32aee2ee20418b9d89a4fb7e42e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2360782132154413158
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rustle5_{2360782132154413158}
+  m_AudioClip: {fileID: 8300000, guid: 0e1ab7caa1188b44b9392805fcf84b12, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &3785865301273187156
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rustle1_{3785865301273187156}
+  m_AudioClip: {fileID: 8300000, guid: 80cae83e2c7d2264bac8c5cc01d54f39, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RustleRand
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 3785865301273187156}
+  - {fileID: -8687611655720667292}
+  - {fileID: -8741788577215367703}
+  - {fileID: 8417103618721218731}
+  - {fileID: 2360782132154413158}
+  m_AvoidRepeatingLast: 2
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &8417103618721218731
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rustle4_{8417103618721218731}
+  m_AudioClip: {fileID: 8300000, guid: c77ed4842ff630a4fb03b9f5b5d6c9d0, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
