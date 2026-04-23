@@ -84,6 +84,35 @@ MonoBehaviour:
   - {fileID: 4617298612588728625}
   - {fileID: -573853198974297960}
   - {fileID: -8748828243780322944}
+  - {fileID: 1377058211545070388}
+--- !u!114 &1377058211545070388
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
+  m_Name: Grain
+  m_EditorClassIdentifier: Unity.Postprocessing.Runtime::UnityEngine.Rendering.PostProcessing.Grain
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  colored:
+    overrideState: 0
+    value: 0
+  intensity:
+    overrideState: 1
+    value: 0.078
+  size:
+    overrideState: 1
+    value: 1.23
+  lumContrib:
+    overrideState: 0
+    value: 0.8
 --- !u!114 &4617298612588728625
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -153,7 +182,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.2
+    value: 0.5
   fastMode:
     overrideState: 1
     value: 1

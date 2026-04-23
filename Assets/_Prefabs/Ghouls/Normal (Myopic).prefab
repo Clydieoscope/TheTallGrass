@@ -7181,7 +7181,7 @@ GameObject:
   - component: {fileID: 3342964086435222565}
   - component: {fileID: 7495361807859376857}
   m_Layer: 7
-  m_Name: Normal
+  m_Name: Normal (Myopic)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7268,11 +7268,11 @@ MonoBehaviour:
   m_playerLayerMask:
     serializedVersion: 2
     m_Bits: 257
-  m_detectionRange: 10
+  m_detectionRange: 8
   m_detectionHeight: 1
   showDebugVisuals: 1
   m_memoryDuration: 5
-  m_stealthDetectionRange: 5
+  m_stealthDetectionRange: 2
   m_detectionAngle: 190
   m_behindDetectionRange: 3
 --- !u!114 &5317386642072496483
@@ -7287,7 +7287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f4960a3bf4c664d81f3c0168c1cd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 15
+  detectionRadius: 10
   stealthDetectionRadius: 5
   detectionMask:
     serializedVersion: 2

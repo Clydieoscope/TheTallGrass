@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: howlClip
       value: 
       objectReference: {fileID: 8300000, guid: 1777d15b2b822114c8d10719b1be22f9, type: 3}
+    - target: {fileID: 5317386642072496483, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
+      propertyPath: detectionRadius
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670209278861123269, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
+      propertyPath: m_detectionRange
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5712200192507160636, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
       propertyPath: m_Name
       value: Rusher

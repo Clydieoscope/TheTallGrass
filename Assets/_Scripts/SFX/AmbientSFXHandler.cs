@@ -15,6 +15,7 @@ public class AmbientSFXHandler : MonoBehaviour
     public AudioClip warning_1;
     public AudioClip warning_2;
     public AudioClip warning_3;
+    public AudioClip chase;
 
     private float _lastSpottedTime = -30f;
 

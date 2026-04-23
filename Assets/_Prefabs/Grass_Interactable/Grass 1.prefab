@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18722bc692df1754db9dc11957b44053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrassStealthZone
-  stealthAmount: 1
+  stealthAmount: 0
 --- !u!114 &847497668716566606
 MonoBehaviour:
   m_ObjectHideFlags: 0
