@@ -2,6 +2,7 @@
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
+using static GameStateManager;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -136,6 +137,7 @@ namespace StarterAssets
 #endif
             }
         }
+        private bool _gamePaused;
 
 
         private void Awake()
@@ -154,6 +156,7 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            Debug.Log(_input);
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -161,6 +164,9 @@ namespace StarterAssets
 #endif
 
             AssignAnimationIDs();
+
+            // subscribe to game state changes
+            GameStateManager.Instance.OnGameStateChanged += OnGameStateChange;
 
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
@@ -174,6 +180,9 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
+
+            // avoid checking controls and stuff if the game is paused
+            if (_gamePaused) return;
 
             JumpAndGravity();
             GroundedCheck();
@@ -190,7 +199,15 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
+            // avoid checking controls and stuff if the game is paused
+            if (_gamePaused) return;
+
             CameraRotation();
+        }
+
+        private void OnDestroy()
+        {
+            GameStateManager.Instance.OnGameStateChanged -= OnGameStateChange;
         }
 
         private void AssignAnimationIDs()
@@ -445,6 +462,24 @@ namespace StarterAssets
                 if (LandingAudio != null)
                     LandingAudio.Play();
 
+            }
+        }
+
+        private void OnGameStateChange(GameState newState)
+        {
+            if (newState != GameState.Playing)
+            {
+                AudioFootsteps.Pause();
+                AudioFoley?.Pause();
+                LandingAudio?.Pause();
+                _gamePaused = true;
+            }
+            else
+            {
+                AudioFootsteps?.UnPause();
+                AudioFoley?.UnPause();
+                LandingAudio?.UnPause();
+                _gamePaused = false;
             }
         }
     }
