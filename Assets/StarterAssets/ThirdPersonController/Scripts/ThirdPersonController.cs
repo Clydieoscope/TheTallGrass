@@ -228,6 +228,9 @@ namespace StarterAssets
 
         private void CameraRotation()
         {
+            if (GameStateManager.Instance.CurrentState != GameState.Playing)
+                return;
+
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;

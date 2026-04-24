@@ -254,7 +254,7 @@ AnimatorStateMachine:
     m_Position: {x: 180, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5455916593386612133}
-    m_Position: {x: 180, y: -240, z: 0}
+    m_Position: {x: 170, y: -240, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -1593857743784007354}
@@ -623,7 +623,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CrawlingOutHole
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2404746899059824177}

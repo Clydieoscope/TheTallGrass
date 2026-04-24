@@ -3,12 +3,6 @@ using UnityEngine;
 public class GrassStealthZone : MonoBehaviour
 {
     [SerializeField] private float stealthAmount = 1f;
-    private GrassSFXHandler sfx;
-
-    void Start()
-    {
-        sfx = this.GetComponent<GrassSFXHandler>();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +10,6 @@ public class GrassStealthZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StealthSystem stealth = other.GetComponent<StealthSystem>();
-            sfx.PlayRustle();
 
             if (stealth != null)
             {
@@ -31,7 +24,6 @@ public class GrassStealthZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StealthSystem stealth = other.GetComponent<StealthSystem>();
-            sfx.PlayRustle();
 
             if (stealth != null)
             {

@@ -7200,9 +7200,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6623914415815134613}
   - {fileID: 9079943386397775262}
   - {fileID: 7502647722641879523}
-  - {fileID: 6623914415815134613}
   - {fileID: 4857419662799614938}
   - {fileID: 2613916556943242754}
   - {fileID: 7364150744426929096}
@@ -7330,7 +7330,8 @@ MonoBehaviour:
           m_Value1: 5423184102303935109
         Name: Attacks
         m_Value:
-        - Attack
+        - Attack Right
+        - Attack Left
     - rid: 3307949127561380581
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:

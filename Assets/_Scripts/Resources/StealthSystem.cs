@@ -1,22 +1,25 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StealthSystem : MonoBehaviour
 {
     [SerializeField] private float maxStealth = 100f;
-    private float currentStealth = 0f;
+    [SerializeField] private float currentStealth = 0f;
+
+    public UnityEvent OnStealthChanged;
 
     public void AddStealth(float amount)
     {
         currentStealth += amount;
         currentStealth = Mathf.Clamp(currentStealth, 0f, maxStealth);
-        Debug.Log("Stealth: " + currentStealth);
+        OnStealthChanged?.Invoke();
     }
 
     public void RemoveStealth(float amount)
     {
         currentStealth -= amount;
         currentStealth = Mathf.Clamp(currentStealth, 0f, maxStealth);
-        Debug.Log("Stealth: " + currentStealth);
+        OnStealthChanged?.Invoke();
     }
 
     public float GetStealth()

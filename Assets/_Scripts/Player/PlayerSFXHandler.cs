@@ -1,0 +1,99 @@
+using UnityEngine;
+
+public class PlayerSFXHandler : MonoBehaviour
+{
+    [SerializeField] private AudioSource footstepSource;
+    [SerializeField] private AudioSource foleySource;
+    [SerializeField] private AudioSource mouthSource;
+    
+    [Range(0f, 1f)] public float volume = 1f;
+
+    public AudioClip heartbeatClip;
+    public AudioClip breathingClip;
+    public AudioClip lighterClip;
+    public AudioClip exhaleClip;
+
+    [Header("Footsteps")]
+    public AudioClip[] footstepClips;
+
+    [Header("Grass")]
+    public AudioClip[] grassClips;
+
+    [Header("Hit")]
+    public AudioClip[] hitClips;
+
+    [Header("Attack")]
+    public AudioClip[] wooshClips;
+
+    [Header("Grunt")]
+    public AudioClip[] gruntClips;
+
+    [Header("Pain")]
+    public AudioClip[] painClips;
+
+    [Header("Death")]
+    public AudioClip[] deathClips;
+
+
+    private void PlayRandom(AudioSource source, AudioClip[] clips)
+    {
+        if (clips.Length == 0) return;
+
+        int index = Random.Range(0, clips.Length);
+        AudioClip clip = clips[index];
+
+        source.PlayOneShot(clip, volume);
+    }
+
+    public void PlayHitSound()
+    {
+        PlayRandom(foleySource, hitClips);
+        PlayRandom(mouthSource, painClips);
+    }
+
+    public void PlayAttackSound()
+    {
+        PlayRandom(foleySource, wooshClips);
+        PlayRandom(mouthSource, gruntClips);
+    }
+
+    public void PlayFootstep()
+    {
+        PlayRandom(footstepSource, footstepClips);
+    }
+
+    public void PlayGrassShake()
+    {
+        PlayRandom(footstepSource, grassClips);
+    }
+
+    public void PlayDeath()
+    {
+        PlayRandom(mouthSource, deathClips);
+    }
+
+    public void PlayHeartbeat()
+    {
+        foleySource.PlayOneShot(heartbeatClip, volume);
+    }
+
+    public void PlayBreathing()
+    {
+        mouthSource.PlayOneShot(breathingClip, volume);
+    }
+
+    public void PlayLighter()
+    {
+        mouthSource.PlayOneShot(lighterClip, volume);
+    }
+
+    public void PlayExhale()
+    {
+        mouthSource.PlayOneShot(exhaleClip, volume);
+    }
+
+    public void disableMouthSource()
+    {
+        mouthSource.Stop();
+    }
+}

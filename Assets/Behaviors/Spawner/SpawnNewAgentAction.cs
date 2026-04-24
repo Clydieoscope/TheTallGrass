@@ -30,7 +30,7 @@ public partial class SpawnNewAgentAction : Action
 
         // Spawn position (you can adjust this)
         Vector3 spawnPos = Spawner.Value.transform.position;
-        Quaternion spawnRot = Quaternion.identity;
+        Quaternion spawnRot = Spawner.Value.transform.rotation;
 
         // Instantiate a fresh copy of the prefab
         GameObject newAgent = UnityEngine.Object.Instantiate(Agent.Value, spawnPos, spawnRot);

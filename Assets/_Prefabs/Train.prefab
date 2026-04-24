@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1718398366198260946}
   - component: {fileID: 3276842245480794403}
   - component: {fileID: 8843124735202857449}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 1550763212373989389}
   - component: {fileID: 750120422399624611}
   - component: {fileID: 9009879010552504677}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2100992120721187034}
   - component: {fileID: 3436313573041486564}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Train Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 0.73198485, b: 0.4669811, a: 1}
-  m_Intensity: 10
+  m_Intensity: 1
   m_Range: 40
   m_SpotAngle: 35
   m_InnerSpotAngle: 25.53751
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 8820461771261260211}
   - component: {fileID: 6222807125490028717}
   - component: {fileID: 7085782251378284986}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5179,7 +5179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6186239358677221976}
   - component: {fileID: 4683058184774429961}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Train Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5212,7 +5212,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 0.73198485, b: 0.4669811, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1
   m_Range: 30
   m_SpotAngle: 75
   m_InnerSpotAngle: 57.754898
@@ -5278,7 +5278,7 @@ GameObject:
   - component: {fileID: 7002849819188496399}
   - component: {fileID: 3451181141010009972}
   - component: {fileID: 8371476445851219971}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5389,7 +5389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9028237664062360556}
   - component: {fileID: 7232859667039783304}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Train Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5422,7 +5422,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 0.73198485, b: 0.4669811, a: 1}
-  m_Intensity: 10
+  m_Intensity: 1
   m_Range: 40
   m_SpotAngle: 35
   m_InnerSpotAngle: 25.53751
@@ -5488,7 +5488,7 @@ GameObject:
   - component: {fileID: 8492387547231751935}
   - component: {fileID: 4068605805073456400}
   - component: {fileID: 8332771398669356813}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5600,7 +5600,7 @@ GameObject:
   - component: {fileID: 7408137452873394781}
   - component: {fileID: 9208375689493352108}
   - component: {fileID: 6605042162244948019}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Brakes R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5688,7 +5688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1784495083008326930}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Brakes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5724,7 +5724,7 @@ GameObject:
   - component: {fileID: 2176969891747959907}
   - component: {fileID: 3101062174156305413}
   - component: {fileID: 3121338145248467204}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5836,7 +5836,7 @@ GameObject:
   - component: {fileID: 2529776035083724646}
   - component: {fileID: 971282974580171528}
   - component: {fileID: 6617849198113391555}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dr14 lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5926,7 +5926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5367356042120280982}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Headlights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5963,7 +5963,7 @@ GameObject:
   - component: {fileID: 1731085695037663577}
   - component: {fileID: 656920182495283302}
   - component: {fileID: 4877068964075785583}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Headlight DL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6055,7 +6055,7 @@ GameObject:
   - component: {fileID: 5010926320722657176}
   - component: {fileID: 6440377466263714657}
   - component: {fileID: 5629322999809704405}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6167,7 +6167,7 @@ GameObject:
   - component: {fileID: 7879882655110285907}
   - component: {fileID: 6581160501324644510}
   - component: {fileID: 4113389231437031957}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Headlight UR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6259,7 +6259,7 @@ GameObject:
   - component: {fileID: 9176605564857232721}
   - component: {fileID: 5997380780903455161}
   - component: {fileID: 4987778334358950564}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6371,7 +6371,7 @@ GameObject:
   - component: {fileID: 4126775332098278366}
   - component: {fileID: 5203397552611024474}
   - component: {fileID: 5751152412800271985}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6426,6 +6426,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3627094ffa143714b8afca9d5d8d7f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  OnGoalReached:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameEndHandler, Assembly-CSharp
+        m_MethodName: TriggerWin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7773392316092788610
 GameObject:
   m_ObjectHideFlags: 0
@@ -6436,7 +6451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7011801888567258969}
   - component: {fileID: 964238389694864805}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Train Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6469,7 +6484,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 0.73198485, b: 0.4669811, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1
   m_Range: 30
   m_SpotAngle: 75
   m_InnerSpotAngle: 57.754898
@@ -6535,7 +6550,7 @@ GameObject:
   - component: {fileID: 8546892505335196481}
   - component: {fileID: 983110246811356853}
   - component: {fileID: 2267625568819179581}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6657,7 +6672,7 @@ GameObject:
   - component: {fileID: 1019683810204016301}
   - component: {fileID: 8396935539115053370}
   - component: {fileID: 8213400151055891279}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Headlight UL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6749,7 +6764,7 @@ GameObject:
   - component: {fileID: 8481766337796635394}
   - component: {fileID: 7920374319580511745}
   - component: {fileID: 1269468964298294678}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6860,7 +6875,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8882799731937488637}
   - component: {fileID: 3197243227940567515}
-  m_Layer: 0
+  - component: {fileID: 5946859178231257958}
+  - component: {fileID: 1941047305278189807}
+  - component: {fileID: 1899589146962313093}
+  m_Layer: 12
   m_Name: Train
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6904,13 +6922,53 @@ MonoBehaviour:
   m_PlayOnAwake: 0
   m_LoopMode: 0
   m_Method: 0
-  m_Duration: 30
-  m_MaxSpeed: 16.666666
+  m_Duration: 60
+  m_MaxSpeed: 8.333333
   m_EasingMode: 1
   m_AlignmentMode: 1
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!208 &5946859178231257958
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906957053930210301}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.5, y: 2.5, z: 42.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.5, z: -33}
+  m_TimeToStationary: 0.5
+--- !u!114 &1941047305278189807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906957053930210301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e889ba70717c849bb4aae79e5d832e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &1899589146962313093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906957053930210301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d34479c8c41b244bcdfd1c1942d3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &8942067970207630950
 GameObject:
   m_ObjectHideFlags: 0
@@ -6922,7 +6980,7 @@ GameObject:
   - component: {fileID: 2286769624149462739}
   - component: {fileID: 4823023024479769390}
   - component: {fileID: 6593597120403494800}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Brakes L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7012,7 +7070,7 @@ GameObject:
   - component: {fileID: 3082454366611361954}
   - component: {fileID: 5787371539637753267}
   - component: {fileID: 3574268694606848289}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Headlight DR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7102,7 +7160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5705940494357852671}
   - component: {fileID: 5531346316177664407}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7134,7 +7192,7 @@ AudioSource:
   m_GameObject: {fileID: 9199765610280830261}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1703667295919820509, guid: 16c1f08d990e5a341bb9376021ab5164, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 436824c3624ce23469d637d7e62234e6, type: 3}
   m_PlayOnAwake: 0
@@ -7270,9 +7328,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7621661683128027304, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208332990768265838, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8611102425816382715, guid: 62344716d0f091042bad3fcf31467716, type: 3}
       propertyPath: m_Name
       value: Cart (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611102425816382715, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7332,9 +7402,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7621661683128027304, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208332990768265838, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8611102425816382715, guid: 62344716d0f091042bad3fcf31467716, type: 3}
       propertyPath: m_Name
       value: Cart (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611102425816382715, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7394,9 +7476,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7621661683128027304, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208332990768265838, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8611102425816382715, guid: 62344716d0f091042bad3fcf31467716, type: 3}
       propertyPath: m_Name
       value: Cart (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611102425816382715, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7456,13 +7550,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1129068594144483597, guid: 62344716d0f091042bad3fcf31467716, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 7621661683128027304, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208332990768265838, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8611102425816382715, guid: 62344716d0f091042bad3fcf31467716, type: 3}
       propertyPath: m_Name
       value: Cart
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611102425816382715, guid: 62344716d0f091042bad3fcf31467716, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
