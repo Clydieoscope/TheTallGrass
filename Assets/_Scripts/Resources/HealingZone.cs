@@ -7,7 +7,11 @@ public class HealingZone : MonoBehaviour
  
     private void OnTriggerStay(Collider other)
     {
+        if (!other.CompareTag("Player")) return;
+        
         HealthSystem health = other.GetComponent<HealthSystem>();
+
+
         if (health != null && !health.IsDead())
         {
             health.Heal(healPerSecond * Time.deltaTime);

@@ -1000,7 +1000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5317386642072496483, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
       propertyPath: detectionRadius
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5397901646890159431, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1116,7 +1116,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5670209278861123269, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
       propertyPath: m_detectionRange
-      value: 10
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670209278861123269, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
+      propertyPath: m_stealthDetectionRange
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5712200192507160636, guid: f0d3de1dbc205d94e86fa30d058e3ef5, type: 3}
       propertyPath: m_Name

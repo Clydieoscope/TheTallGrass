@@ -32,18 +32,11 @@ public class PlayerHUD : MonoBehaviour
         if (stamina != null)
             stamina.OnStaminaChanged.AddListener(UpdateStaminaBar);
     }
-
-    // private void Start()
-    // {
-    //     HealthSystem health = FindObjectOfType<HealthSystem>();
-    //     StaminaSystem stamina = FindObjectOfType<StaminaSystem>();
-
-    //     if (health != null)
-    //         health.OnHealthChanged.AddListener(UpdateHealthBar);
-
-    //     if (stamina != null)
-    //         stamina.OnStaminaChanged.AddListener(UpdateStaminaBar);
-    // }
+    private void OnEnable()
+    {
+        if (health != null)
+            UpdateHealthBar(health.GetHealthNormalized());
+    }
 
     public void UpdateHealthBar(float normalized)
     {
@@ -84,4 +77,5 @@ public class PlayerHUD : MonoBehaviour
         if (staminaWasFull)
             staminaCanvasGroup.alpha = Mathf.MoveTowards(staminaCanvasGroup.alpha, 0f, Time.deltaTime * 2f);
     }
+
 }

@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.Events;
 using System;
 
 public enum GameState
@@ -15,11 +15,15 @@ public enum GameState
 public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance;
-    [SerializeField] private AudioMixer audioMixer;
     public GameState CurrentState { get; private set; }
-    public GameState PrevState {get; private set; }
+    public GameState PrevState { get; private set; }
 
     public event Action<GameState> OnGameStateChanged;
+
+    [Header("Game End Events")]
+    public UnityEvent OnWin;
+    public UnityEvent OnLose;
+    public UnityEvent OnEnd;
 
     private void Awake()
     {
@@ -28,14 +32,13 @@ public class GameStateManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
     }
 
     private void Start()
     {
-        SetState(GameState.Paused);
         Debug.Log(PrevState.ToString() + " " + CurrentState.ToString());
+        SetState(GameState.MainMenu);
     }
 
     public void SetState(GameState newState)
@@ -44,52 +47,40 @@ public class GameStateManager : MonoBehaviour
 
         PrevState = CurrentState;
         CurrentState = newState;
+
         switch (CurrentState)
         {
             case GameState.MainMenu:
                 Time.timeScale = 0.5f;
-                audioMixer.SetFloat("Game", -80f);
-                audioMixer.SetFloat("Music", 0f);
-                audioMixer.SetFloat("UI", 0f);
+                break;
+            case GameState.Paused:
+            case GameState.Settings:
+                Time.timeScale = 0f;
                 break;
             case GameState.Playing:
                 Time.timeScale = 1f;
-                audioMixer.SetFloat("Game", 0f);
-                audioMixer.SetFloat("Music", 0f);
-                audioMixer.SetFloat("UI", 0f);
-                break;
-            case GameState.Paused:
-                Time.timeScale = 0f;
-                audioMixer.SetFloat("Game", -80f);
-                audioMixer.SetFloat("Music", 0f);
-                audioMixer.SetFloat("UI", 0f);
-                break;
-            case GameState.Settings:
-                Time.timeScale = 0f;
-                audioMixer.SetFloat("Game", -80f);
-                audioMixer.SetFloat("Music", 0f);
-                audioMixer.SetFloat("UI", 0f);
                 break;
             case GameState.Won:
             case GameState.Lost:
                 Time.timeScale = 0f;
-                audioMixer.SetFloat("Game", -80f);
-                audioMixer.SetFloat("Music", 0f);
-                audioMixer.SetFloat("UI", -80f);
                 break;
         }
-        Debug.Log("Game State Changed to: " + newState);
 
+        Debug.Log("Game State Changed to: " + newState);
         OnGameStateChanged?.Invoke(newState);
     }
 
     public void Win()
     {
         SetState(GameState.Won);
+        OnWin?.Invoke();
+        OnEnd?.Invoke();
     }
 
     public void Lose()
     {
         SetState(GameState.Lost);
+        OnLose?.Invoke();
+        OnEnd?.Invoke();
     }
 }

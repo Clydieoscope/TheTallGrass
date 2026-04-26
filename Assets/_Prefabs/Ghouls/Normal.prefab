@@ -7180,6 +7180,7 @@ GameObject:
   - component: {fileID: 8524059727270562081}
   - component: {fileID: 3342964086435222565}
   - component: {fileID: 7495361807859376857}
+  - component: {fileID: 7060852269981679511}
   m_Layer: 7
   m_Name: Normal
   m_TagString: Enemy
@@ -7316,6 +7317,7 @@ MonoBehaviour:
   - rid: 3307949127561380581
   - rid: 3307949127561380582
   - rid: 3307949294143144181
+  - rid: 3307949489458512526
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -7356,6 +7358,14 @@ MonoBehaviour:
           m_Value1: 9677308789512704180
         Name: Health System
         m_Value: {fileID: 3342964086435222565}
+    - rid: 3307949489458512526
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8055768320044069331
+          m_Value1: 3549586792626959407
+        Name: ScreamDuration
+        m_Value: 2.5
     - rid: 7171615559369621836
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -7630,6 +7640,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5317386642072496483}
+        m_TargetAssemblyTypeName: RangeDetector, Assembly-CSharp
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5670209278861123269}
+        m_TargetAssemblyTypeName: LineOfSightDetector, Assembly-CSharp
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7495361807859376857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7643,6 +7677,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   m_Agent: {fileID: 2725274989923958627}
+--- !u!54 &7060852269981679511
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712200192507160636}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5755211437197302625
 GameObject:
   m_ObjectHideFlags: 0

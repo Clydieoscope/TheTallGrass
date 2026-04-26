@@ -105,6 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fb7d8e75f4c3947910565ffe1248eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrackPosition
+  trackedLayers:
+    serializedVersion: 2
+    m_Bits: 384
   trackingHeightOffset: 1
 --- !u!114 &6444860306009877208
 MonoBehaviour:

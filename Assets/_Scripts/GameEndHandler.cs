@@ -89,9 +89,7 @@ public class GameEndHandler : MonoBehaviour
             _vignette.intensity.value = Mathf.Lerp(startVignette, 1f, t);
 
             float mixerVolume = Mathf.Lerp(startMixerVolume, -80f, t);
-            // audioMixer.SetFloat("masterVol", mixerVolume);
-            VolumeManager.Instance.SetVolumeDecibels(mixerVolume);
-
+            VolumeManager.Instance.SetGameVolumeDecibels(mixerVolume);
             musicToPlay.volume = Mathf.Lerp(0f, 1f, t);
 
             yield return null;

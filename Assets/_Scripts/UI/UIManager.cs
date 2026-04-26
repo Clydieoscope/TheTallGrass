@@ -13,7 +13,6 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
-        GameStateManager.Instance.SetState(GameState.MainMenu);
     }
 
     private void HandleGameStateChanged(GameState state)
