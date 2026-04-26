@@ -91,7 +91,6 @@ namespace StarterAssets
         private float _speed;
         private float _animVelocityX;
         private float _animVelocityZ;
-        // private float _targetRotation = 0.0f;
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
@@ -119,7 +118,18 @@ namespace StarterAssets
         private int _animIDGrounded;
         private int _animIDJump;
         private int _animIDFreeFall;
-        private int _animIDAttack;
+        private int _animIDAttack1;
+        private int _animIDAttack2;
+
+        [Header("Combat")]
+        [SerializeField] private float attackStaminaCost = 10f;
+        [SerializeField] private StaminaSystem stamina;
+        // combo
+        private int _comboIndex = 0;
+        private float _comboResetTimer = 0f;
+        private float _attackCooldownTimer = 0f;
+        private const float ComboResetDelay = 2.0f;
+        [SerializeField] private float attackCooldown = 1f; // match to your animation length
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -140,7 +150,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
                 return _playerInput.currentControlScheme == "KeyboardMouse";
 #else
-				return false;
+                return false;
 #endif
             }
         }
@@ -168,7 +178,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
-			Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
+            Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
             AssignAnimationIDs();
@@ -210,7 +220,8 @@ namespace StarterAssets
             _animIDGrounded = Animator.StringToHash("Grounded");
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
-            _animIDAttack = Animator.StringToHash("Attack");
+            _animIDAttack1 = Animator.StringToHash("Attack1");
+            _animIDAttack2 = Animator.StringToHash("Attack2");
         }
 
         private void GroundedCheck()
@@ -221,9 +232,7 @@ namespace StarterAssets
                 QueryTriggerInteraction.Ignore);
 
             if (_hasAnimator)
-            {
                 _animator.SetBool(_animIDGrounded, Grounded);
-            }
         }
 
         private void CameraRotation()
@@ -290,7 +299,6 @@ namespace StarterAssets
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
             // Compute local-space velocity for the 2D blend tree
-            // Project world velocity onto character's local axes
             Vector3 worldVelocity = new Vector3(_controller.velocity.x, 0f, _controller.velocity.z);
             Vector3 localVelocity = transform.InverseTransformDirection(worldVelocity);
 
@@ -389,6 +397,51 @@ namespace StarterAssets
                 _verticalVelocity += Gravity * Time.deltaTime;
         }
 
+        private void Attack()
+        {
+            if (_comboResetTimer > 0f)
+            {
+                _comboResetTimer -= Time.deltaTime;
+                if (_comboResetTimer <= 0f)
+                    _comboIndex = 0;
+            }
+
+            if (_attackCooldownTimer > 0f)
+            {
+                _attackCooldownTimer -= Time.deltaTime;
+                return;
+            }
+
+            if (!_input.attack) return;
+            _input.attack = false;
+
+            if (!_hasWeapon) return;
+
+            if (stamina != null && !stamina.HasStamina(attackStaminaCost))
+            {
+                _input.attack = false;
+                return;
+            }
+
+            if (_hasAnimator)
+            {
+                if (_comboIndex == 0)
+                {
+                    _animator.SetTrigger(_animIDAttack1);
+                    _comboIndex = 1;
+                }
+                else
+                {
+                    _animator.SetTrigger(_animIDAttack2);
+                    _comboIndex = 0;
+                }
+
+                stamina?.UseStamina(attackStaminaCost);
+                _attackCooldownTimer = attackCooldown;
+                _comboResetTimer = ComboResetDelay;
+            }
+        }
+
         /// <summary>
         /// Called by StaminaSystem to apply or remove an exhaustion movement penalty.
         /// Pass 1.0 to restore normal speed, less than 1.0 to penalize.
@@ -435,24 +488,6 @@ namespace StarterAssets
             {
                 if (LandingAudio != null)
                     LandingAudio.Play();
-            }
-        }
-
-        private void Attack()
-        {
-            if (_input.attack)
-            {
-                if (!_hasWeapon || _animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-                {
-                    _animator.ResetTrigger(_animIDAttack);
-                    _input.attack = false;
-                    return;
-                }
-
-                if (_hasAnimator)
-                    _animator.SetTrigger(_animIDAttack);
-
-                _input.attack = false;
             }
         }
 

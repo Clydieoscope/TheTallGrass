@@ -55,7 +55,6 @@ public class GhoulStateHandler : MonoBehaviour
 
     private void OnAgentDied(GameObject agent)
     {
-        // Ensure chase is unregistered if the ghoul dies mid-chase
         if (_wasChasing)
         {
             GhoulChaseTracker.Instance.UnregisterChase();
@@ -63,5 +62,6 @@ public class GhoulStateHandler : MonoBehaviour
         }
 
         Debug.Log($"{agent.name} has died.");
+        Destroy(gameObject, 3f);
     }
 }

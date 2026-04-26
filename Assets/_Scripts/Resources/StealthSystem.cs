@@ -7,6 +7,7 @@ public class StealthSystem : MonoBehaviour
     [SerializeField] private float currentStealth = 0f;
 
     public UnityEvent OnStealthChanged;
+    public UnityEvent OnHidden;
 
     public void AddStealth(float amount)
     {
@@ -20,6 +21,7 @@ public class StealthSystem : MonoBehaviour
         currentStealth -= amount;
         currentStealth = Mathf.Clamp(currentStealth, 0f, maxStealth);
         OnStealthChanged?.Invoke();
+        
     }
 
     public float GetStealth()

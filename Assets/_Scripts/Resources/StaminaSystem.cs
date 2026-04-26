@@ -15,6 +15,10 @@ public class StaminaSystem : MonoBehaviour
     [Tooltip("Stamina percentage that must be reached before the penalty is lifted.")]
     [SerializeField] [Range(5f, 50f)] private float recoveryThreshold = 25f;
 
+    [Header("Attack Regen")]
+    [Tooltip("Seconds after the last attack before stamina starts regenerating.")]
+    [SerializeField] private float attackRegenDelayDuration = 1.5f;
+
     [Header("Events")]
     public UnityEvent<float> OnStaminaChanged;  // normalized 0-1
     public UnityEvent OnExhausted;
@@ -23,6 +27,9 @@ public class StaminaSystem : MonoBehaviour
     private float currentStamina;
     private float regenDelayTimer = 0f;
     private bool isExhausted = false;
+
+    private bool isAttacking = false;
+    private float attackRegenDelay = 1.5f;
 
     private StarterAssets.StarterAssetsInputs _input;
     private StarterAssets.ThirdPersonController _controller;
@@ -40,6 +47,14 @@ public class StaminaSystem : MonoBehaviour
     {
         if (_input == null) return;
 
+        // Tick down attack regen delay
+        if (attackRegenDelay > 0f)
+        {
+            attackRegenDelay -= Time.deltaTime;
+            if (attackRegenDelay <= 0f)
+                isAttacking = false;
+        }
+
         bool wantsToSprint = _input.sprint;
         bool canSprint = wantsToSprint && !isExhausted && currentStamina > 0f;
 
@@ -51,9 +66,8 @@ public class StaminaSystem : MonoBehaviour
             OnStaminaChanged?.Invoke(GetStaminaNormalized());
 
             if (currentStamina <= 0f)
-            {
                 TriggerExhaustion();
-            }
+
         }
         else
         {
@@ -62,23 +76,19 @@ public class StaminaSystem : MonoBehaviour
             {
                 regenDelayTimer -= Time.deltaTime;
             }
-            else if (currentStamina < maxStamina)
+            else if (currentStamina < maxStamina && !isAttacking)
             {
                 currentStamina = Mathf.Min(maxStamina, currentStamina + regenRate * Time.deltaTime);
                 OnStaminaChanged?.Invoke(GetStaminaNormalized());
 
                 if (isExhausted && currentStamina >= recoveryThreshold)
-                {
                     LiftExhaustion();
-                }
             }
         }
 
         // Keep blocking sprint while exhausted
         if (isExhausted && _input.sprint)
-        {
             _input.sprint = false;
-        }
     }
 
     private void TriggerExhaustion()
@@ -105,4 +115,18 @@ public class StaminaSystem : MonoBehaviour
     public float GetStaminaNormalized() => currentStamina / maxStamina;
     public float GetCurrentStamina() => currentStamina;
     public bool IsExhausted() => isExhausted;
+
+    public bool HasStamina(float amount) => currentStamina >= amount;
+
+    public void UseStamina(float amount)
+    {
+        currentStamina = Mathf.Max(0f, currentStamina - amount);
+        OnStaminaChanged?.Invoke(GetStaminaNormalized());
+
+        isAttacking = true;
+        attackRegenDelay = attackRegenDelayDuration;
+
+        if (currentStamina <= 0f)
+            TriggerExhaustion();
+    }
 }
