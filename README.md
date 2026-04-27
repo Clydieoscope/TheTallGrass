@@ -47,7 +47,7 @@ Ghouls detect the player through **sight**. Staying low and out of their field o
 | Sprint | `Left Shift` |
 | Crouch | `Left Ctrl` |
 | Camera | `Mouse` |
-| Interact | `Left Click` |
+| Attack | `Left Click` |
 | Pick Up | `E` |
 
 
