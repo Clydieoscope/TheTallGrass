@@ -7172,15 +7172,15 @@ GameObject:
   - component: {fileID: 5792551987180018412}
   - component: {fileID: 8287613766149459419}
   - component: {fileID: 8914826774928867625}
+  - component: {fileID: 2725274989923958627}
   - component: {fileID: 5670209278861123269}
   - component: {fileID: 5317386642072496483}
-  - component: {fileID: 2725274989923958627}
   - component: {fileID: 7766402550620623877}
   - component: {fileID: 4037244286516471221}
-  - component: {fileID: 8524059727270562081}
   - component: {fileID: 3342964086435222565}
   - component: {fileID: 7495361807859376857}
   - component: {fileID: 7060852269981679511}
+  - component: {fileID: 8524059727270562081}
   m_Layer: 7
   m_Name: Normal
   m_TagString: Enemy
@@ -7254,46 +7254,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5670209278861123269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712200192507160636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 288312643eeab2e4f820788ea69b3fac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 257
-  m_detectionRange: 10
-  m_detectionHeight: 1
-  showDebugVisuals: 1
-  m_memoryDuration: 5
-  m_stealthDetectionRange: 5
-  m_detectionAngle: 190
-  m_behindDetectionRange: 3
---- !u!114 &5317386642072496483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712200192507160636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f4960a3bf4c664d81f3c0168c1cd7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRadius: 15
-  stealthDetectionRadius: 5
-  detectionMask:
-    serializedVersion: 2
-    m_Bits: 256
-  showDebugVisuals: 1
 --- !u!114 &2725274989923958627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7406,6 +7366,46 @@ MonoBehaviour:
           m_Value1: 18202490448834709410
         Name: PatrolPoints
         m_Value: []
+--- !u!114 &5670209278861123269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712200192507160636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288312643eeab2e4f820788ea69b3fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 257
+  m_detectionRange: 10
+  m_detectionHeight: 1
+  showDebugVisuals: 1
+  m_memoryDuration: 5
+  m_stealthDetectionRange: 5
+  m_detectionAngle: 190
+  m_behindDetectionRange: 3
+--- !u!114 &5317386642072496483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712200192507160636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f4960a3bf4c664d81f3c0168c1cd7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 15
+  stealthDetectionRadius: 5
+  detectionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  showDebugVisuals: 1
 --- !u!114 &7766402550620623877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7455,29 +7455,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bc5c976862fabf84aab8e38675c5a439, type: 3}
   - {fileID: 8300000, guid: 82cade5b20a3fb3488fe325c94e8b608, type: 3}
   volume: 0.5
---- !u!136 &8524059727270562081
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712200192507160636}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Height: 1.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.785, z: 0.2}
 --- !u!114 &3342964086435222565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7704,6 +7681,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &8524059727270562081
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712200192507160636}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.785, z: 0.2}
 --- !u!1 &5755211437197302625
 GameObject:
   m_ObjectHideFlags: 0

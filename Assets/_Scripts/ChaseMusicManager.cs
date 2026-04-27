@@ -13,10 +13,6 @@ public class ChaseMusicManager : MonoBehaviour
     private void Start()
     {
         _originalVolume = chaseMusicSource.volume;
-    }
-
-    private void OnEnable()
-    {
         GhoulChaseTracker.Instance.OnChaseCountChanged += HandleChaseCountChanged;
     }
 
@@ -24,6 +20,11 @@ public class ChaseMusicManager : MonoBehaviour
     {
         if (GhoulChaseTracker.Instance != null)
             GhoulChaseTracker.Instance.OnChaseCountChanged -= HandleChaseCountChanged;
+    }
+
+    private void OnEnable()
+    {
+        GhoulChaseTracker.Instance.OnChaseCountChanged += HandleChaseCountChanged;
     }
 
     private void HandleChaseCountChanged(int count)

@@ -3,11 +3,23 @@ using UnityEngine.Events;
 
 public class StealthSystem : MonoBehaviour
 {
+    public static StealthSystem Instance;
+
     [SerializeField] private float maxStealth = 100f;
     [SerializeField] private float currentStealth = 0f;
 
     public UnityEvent OnStealthChanged;
     public UnityEvent OnHidden;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     public void AddStealth(float amount)
     {
